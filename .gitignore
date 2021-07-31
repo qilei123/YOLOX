@@ -1,6 +1,6 @@
 ### Linux ###
 *~
-
+!yolox/data/datasets/erosive_ulcer_mix.py
 # user experiments directory
 YOLOX_outputs/
 datasets/
