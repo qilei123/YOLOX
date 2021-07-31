@@ -144,8 +144,7 @@ class ErosiveUlcer(COCODataset):
         print(im_ann)
         # load image and preprocess
         img_file = os.path.join(
-            self.data_dir, self.name, "{:012}".format(im_ann["file_name"])
-        )
+            self.data_dir, self.name, im_ann["file_name"])
         print(img_file)
         img = cv2.imread(img_file)
         assert img is not None
