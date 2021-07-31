@@ -25,7 +25,7 @@ class Exp(MyExp):
 
     def get_data_loader(self, batch_size, is_distributed, no_aug=False):
         from yolox.data import (
-            COCODataset,
+            ErosiveUlcer,
             TrainTransform,
             YoloBatchSampler,
             DataLoader,
@@ -33,7 +33,7 @@ class Exp(MyExp):
             MosaicDetection,
         )
 
-        dataset = COCODataset(
+        dataset = ErosiveUlcer(
             data_dir="/data1/qilei_chen/DEVELOPMENTS/YOLOX/datasets/gastric_object_detection",
             json_file=self.train_ann,
             img_size=self.input_size,
@@ -86,9 +86,9 @@ class Exp(MyExp):
         return train_loader
 
     def get_eval_loader(self, batch_size, is_distributed, testdev=False):
-        from yolox.data import COCODataset, ValTransform
+        from yolox.data import ErosiveUlcer, ValTransform
 
-        valdataset = COCODataset(
+        valdataset = ErosiveUlcer(
             data_dir="/data1/qilei_chen/DEVELOPMENTS/YOLOX/datasets/gastric_object_detection",
             json_file=self.val_ann,
             name="images",
