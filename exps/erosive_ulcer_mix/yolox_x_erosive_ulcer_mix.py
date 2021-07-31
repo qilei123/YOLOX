@@ -3,6 +3,11 @@
 # Copyright (c) Megvii, Inc. and its affiliates.
 
 import os
+import random
+
+import torch
+import torch.distributed as dist
+import torch.nn as nn
 
 from yolox.exp import Exp as MyExp
 
