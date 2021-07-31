@@ -131,3 +131,27 @@ class COCODataset(Dataset):
         if self.preproc is not None:
             img, target = self.preproc(img, res, self.input_dim)
         return img, target, img_info, img_id
+
+
+class ErosiveUlcer(COCODataset):
+
+    def pull_item(self, index):
+        id_ = self.ids[index]
+
+        im_ann = self.coco.loadImgs(id_)[0]
+        width = im_ann["width"]
+        height = im_ann["height"]
+        print(im_ann)
+        # load image and preprocess
+        img_file = os.path.join(
+            self.data_dir, self.name, "{:012}".format(im_ann["file_name"])
+        )
+        print(img_file)
+        img = cv2.imread(img_file)
+        assert img is not None
+
+        # load anno
+        res = self.load_anno(index)
+        img_info = (height, width)
+
+        return img, res, img_info, id_
