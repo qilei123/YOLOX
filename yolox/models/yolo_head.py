@@ -334,6 +334,7 @@ class YOLOXHead(nn.Module):
                            CPU mode is applied in this batch. If you want to avoid this issue, \
                            try to reduce the batch size or image size."
                     )
+                    '''
                     torch.cuda.empty_cache()
                     (
                         gt_matched_classes,
@@ -358,7 +359,7 @@ class YOLOXHead(nn.Module):
                         imgs,
                         "cpu",
                     )
-
+                    '''
                 torch.cuda.empty_cache()
                 num_fg += num_fg_img
 
