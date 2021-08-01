@@ -137,7 +137,8 @@ class COCODataset(Dataset):
 
 
 class ErosiveUlcer(COCODataset):
-
+    pass
+    '''
     def pull_item(self, index):
         id_ = self.ids[index]
 
@@ -157,3 +158,4 @@ class ErosiveUlcer(COCODataset):
         img_info = (height, width)
 
         return img, res, img_info, id_
+        '''
