@@ -305,36 +305,37 @@ class YOLOXHead(nn.Module):
                 gt_classes = labels[batch_idx, :num_gt, 0]
                 bboxes_preds_per_image = bbox_preds[batch_idx]
 
-                try:
-                    (
-                        gt_matched_classes,
-                        fg_mask,
-                        pred_ious_this_matching,
-                        matched_gt_inds,
-                        num_fg_img,
-                    ) = self.get_assignments(  # noqa
-                        batch_idx,
-                        num_gt,
-                        total_num_anchors,
-                        gt_bboxes_per_image,
-                        gt_classes,
-                        bboxes_preds_per_image,
-                        expanded_strides,
-                        x_shifts,
-                        y_shifts,
-                        cls_preds,
-                        bbox_preds,
-                        obj_preds,
-                        labels,
-                        imgs,
-                    )
+                #try:
+                (
+                    gt_matched_classes,
+                    fg_mask,
+                    pred_ious_this_matching,
+                    matched_gt_inds,
+                    num_fg_img,
+                ) = self.get_assignments(  # noqa
+                    batch_idx,
+                    num_gt,
+                    total_num_anchors,
+                    gt_bboxes_per_image,
+                    gt_classes,
+                    bboxes_preds_per_image,
+                    expanded_strides,
+                    x_shifts,
+                    y_shifts,
+                    cls_preds,
+                    bbox_preds,
+                    obj_preds,
+                    labels,
+                    imgs,
+                )
+                '''
                 except RuntimeError:
                     logger.error(
                         "OOM RuntimeError is raised due to the huge memory cost during label assignment. \
                            CPU mode is applied in this batch. If you want to avoid this issue, \
                            try to reduce the batch size or image size."
                     )
-                    '''
+                    
                     torch.cuda.empty_cache()
                     (
                         gt_matched_classes,
@@ -359,7 +360,7 @@ class YOLOXHead(nn.Module):
                         imgs,
                         "cpu",
                     )
-                    '''
+                '''
                 torch.cuda.empty_cache()
                 num_fg += num_fg_img
 
