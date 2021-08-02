@@ -303,6 +303,7 @@ class YOLOXHead(nn.Module):
             else:
                 gt_bboxes_per_image = labels[batch_idx, :num_gt, 1:5]
                 gt_classes = labels[batch_idx, :num_gt, 0]
+                print(gt_classes)
                 bboxes_preds_per_image = bbox_preds[batch_idx]
 
                 #try:
@@ -478,7 +479,7 @@ class YOLOXHead(nn.Module):
             bboxes_preds_per_image = bboxes_preds_per_image.cpu()
 
         pair_wise_ious = bboxes_iou(gt_bboxes_per_image, bboxes_preds_per_image, False)
-
+        
         gt_cls_per_image = (
             F.one_hot(gt_classes.to(torch.int64), self.num_classes)
             .float()
