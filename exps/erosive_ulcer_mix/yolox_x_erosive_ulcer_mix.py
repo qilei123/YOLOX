@@ -24,7 +24,7 @@ class Exp(MyExp):
         self.val_ann = "test_mix.json"
 
         self.data_num_workers = 1
-        self.input_size = (320, 320)
+        self.input_size = (640, 640)
 
     def get_data_loader(self, batch_size, is_distributed, no_aug=False):
         from yolox.data import (
