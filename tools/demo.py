@@ -177,6 +177,7 @@ def image_demo(predictor, vis_folder, path, current_time, save_result):
         files = [path]
     files.sort()
     for image_name in files:
+        print(image_name)
         outputs, img_info = predictor.inference(image_name)
         result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
         if save_result:
