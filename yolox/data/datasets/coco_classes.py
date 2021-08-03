@@ -84,3 +84,5 @@ COCO_CLASSES = (
     "hair drier",
     "toothbrush",
 )
+
+Erosive_Ulcer=("erosive","ulcer")

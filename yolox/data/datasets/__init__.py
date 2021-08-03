@@ -3,7 +3,7 @@
 # Copyright (c) Megvii, Inc. and its affiliates.
 
 from .coco import COCODataset, ErosiveUlcer
-from .coco_classes import COCO_CLASSES
+from .coco_classes import COCO_CLASSES,Erosive_Ulcer
 from .datasets_wrapper import ConcatDataset, Dataset, MixConcatDataset
 from .mosaicdetection import MosaicDetection
 from .voc import VOCDetection
