@@ -1,0 +1,1 @@
+python tools/demo.py image -f exps/erosive_ulcer_mix/yolox_x_erosive_ulcer_mix.py -c YOLOX_outputs/yolox_x_erosive_ulcer_mix/best_ckpt.pth.tar --path assets/dog.jpg --conf 0.25 --nms 0.1 --tsize 640 --save_result --device gpu
