@@ -17,7 +17,8 @@ colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
 def eval_erosive_ulcer(dataset_dir):
     exp_file = "exps/erosive_ulcer_mix/yolox_x_erosive_ulcer_mix_512.py"
     exp = get_exp(exp_file, None)
-    
+    exp.test_conf = 0.05
+
     model = exp.get_model()
     model.cuda()
     model.eval()
