@@ -35,7 +35,7 @@ def eval_erosive_ulcer(dataset_dir):
         img_dir = os.path.join(dataset_dir,"images",img_name)
         outputs, img_info = predictor.inference(img_dir)
         result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
-        cv2.imwrite("test/"+img_name,result_image)
+        cv2.imwrite("YOLOX_outputs/yolox_x_erosive_ulcer_mix_512/vis_results/"+img_name,result_image)
 
 if __name__ == "__main__":
     eval_erosive_ulcer("datasets/gastric_object_detection/")
