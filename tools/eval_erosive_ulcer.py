@@ -18,7 +18,7 @@ def eval_erosive_ulcer(dataset_dir):
     exp_file = "exps/erosive_ulcer_mix/yolox_x_erosive_ulcer_mix_512.py"
     exp = get_exp(exp_file, None)
     exp.test_conf = 0.05
-
+    exp.nmsthre = 0.01
     model = exp.get_model()
     model.cuda()
     model.eval()
@@ -44,9 +44,9 @@ def eval_erosive_ulcer(dataset_dir):
             [x, y, w, h] = ann['bbox']
             # print(ann['category_id'])
             cv2.putText(result_image, Erosive_Ulcer[ann['category_id']-1], (int(x), int(
-                y)), cv2.FONT_HERSHEY_SIMPLEX, 1, colors[ann['category_id']-1], 2, cv2.LINE_AA)
+                y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 1, cv2.LINE_AA)
             cv2.rectangle(result_image, (int(x), int(y)), (int(x+w),
-                                                    int(y+h)), colors[ann['category_id']-1], 2)
+                                                    int(y+h)), (0,255,0), 1)
 
         cv2.imwrite("YOLOX_outputs/yolox_x_erosive_ulcer_mix_512/vis_results/"+img_name,result_image)
 
