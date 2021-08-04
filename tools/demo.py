@@ -125,7 +125,6 @@ class Predictor(object):
         img_info = {"id": 0}
         if isinstance(img, str):
             img_info["file_name"] = os.path.basename(img)
-            print(img)
             img = cv2.imread(img)
         else:
             img_info["file_name"] = None
