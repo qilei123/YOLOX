@@ -18,7 +18,7 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
     exp_file = "exps/erosive_ulcer_mix/"+confg_name+".py"
     exp = get_exp(exp_file, None)
     exp.test_conf = 0.01
-    exp.nmsthre = 0.1
+    exp.nmsthre = 0.0
     model = exp.get_model()
     model.cuda()
     model.eval()
@@ -35,8 +35,8 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
     for img_id in coco_imgs:
         img_name = coco_imgs[img_id]["file_name"]
         img_dir = os.path.join(dataset_dir,"images",img_name)
-        #if "0ad1515b-2e8a-45fa-bf47-5c203e7bb118" in img_name:
-        if True:
+        if "00b04d25-1db7-4223-8180-8f3df2c46d05" in img_name:
+        #if True:
             outputs, img_info = predictor.inference(img_dir)
             result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
             
