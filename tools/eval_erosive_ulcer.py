@@ -36,7 +36,7 @@ def get_eval_outputs(output,ratio=1):
     bboxes = output[:, 0:4]
 
     # preprocessing: resize
-    #bboxes /= ratio
+    bboxes /= ratio
 
     classes = output[:,6]
 
