@@ -38,6 +38,7 @@ def get_eval_outputs(output,ratio):
 
     eval_outputs = []
     for bbox,cls in zip(bboxes,classes):
+        print(bbox)
         bbox.append(cls)
         eval_outputs.append(bbox)
 
