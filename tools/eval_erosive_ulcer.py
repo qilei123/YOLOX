@@ -27,6 +27,10 @@ def anns2gtboxes(gtanns,categories=[1,2]):
     return gtboxes
 
 def get_eval_outputs(output,ratio):
+    eval_outputs = []
+    
+    if output is None:
+        return eval_outputs
     output = output.cpu()
     output = output.numpy()
     bboxes = output[:, 0:4]
@@ -36,7 +40,7 @@ def get_eval_outputs(output,ratio):
 
     classes = output[:,6]
 
-    eval_outputs = []
+    
     for bbox,cls in zip(bboxes,classes):
         bbox = bbox.tolist()
         #print(bbox)
