@@ -75,7 +75,7 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
 
             outputs, img_info = predictor.inference(img_dir)
             print(outputs)
-            eval_outputs = get_eval_outputs(outputs,img_info["ratio"])
+            eval_outputs = get_eval_outputs(outputs[0],img_info["ratio"])
             print(eval_outputs)
             #eval_m.eval_add_result(gtboxes, filed_boxes,image=image,image_name=coco_instance.imgs[img_id]["file_name"])
             #eval_m.eval_add_result(gtboxes, eval_outputs)
