@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 # Copyright (c) 2014-2021 Megvii Inc. All rights reserved.
 
+import math
 from loguru import logger
 
 import torch
@@ -9,8 +10,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from yolox.utils import bboxes_iou
-
-import math
 
 from .losses import IOUloss
 from .network_blocks import BaseConv, DWConv
@@ -29,7 +28,7 @@ class YOLOXHead(nn.Module):
         """
         Args:
             act (str): activation type of conv. Defalut value: "silu".
-            depthwise (bool): wheather apply depthwise conv in conv branch. Defalut value: False.
+            depthwise (bool): whether apply depthwise conv in conv branch. Defalut value: False.
         """
         super().__init__()
 
@@ -129,7 +128,6 @@ class YOLOXHead(nn.Module):
         self.iou_loss = IOUloss(reduction="none")
         self.strides = strides
         self.grids = [torch.zeros(1)] * len(in_channels)
-        self.expanded_strides = [None] * len(in_channels)
 
     def initialize_biases(self, prior_prob):
         for conv in self.cls_preds:
@@ -632,7 +630,7 @@ class YOLOXHead(nn.Module):
 
         anchor_matching_gt = matching_matrix.sum(0)
         if (anchor_matching_gt > 1).sum() > 0:
-            cost_min, cost_argmin = torch.min(cost[:, anchor_matching_gt > 1], dim=0)
+            _, cost_argmin = torch.min(cost[:, anchor_matching_gt > 1], dim=0)
             matching_matrix[:, anchor_matching_gt > 1] *= 0.0
             matching_matrix[cost_argmin, anchor_matching_gt > 1] = 1.0
         fg_mask_inboxes = matching_matrix.sum(0) > 0.0
