@@ -14,6 +14,18 @@ from yolox.utils import fuse_model, get_model_info, postprocess, vis
 
 colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
 
+def xywh2xyxy(box):
+    return [int(box[0]), int(box[1]), int(box[2]+box[0]), int(box[3]+box[1])]
+
+def anns2gtboxes(gtanns,categories=[1,2]):
+    gtboxes = []
+    for ann in gtanns:
+        if ann['category_id'] in categories:
+            xyxy = xywh2xyxy(ann['bbox'])
+            xyxy.append( ann['category_id'])
+            gtboxes.append(xyxy)
+    return gtboxes
+
 def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512"):
     exp_file = "exps/erosive_ulcer_mix/"+confg_name+".py"
     exp = get_exp(exp_file, None)
@@ -29,6 +41,9 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
 
     predictor = Predictor(model, exp, device="gpu")
 
+    #eval_m = MetricMulticlass(visualize=True,visualization_root="/data1/qilei_chen/DATA/erosive_ulcer_mix/work_dirs/retinanet_free_anchor_r50_fpn_1x_coco_512/epoch_13.pth_test.pkl_result_0.5/")
+    eval_m = MetricMulticlass()
+
     coco_instance = COCO(os.path.join(dataset_dir,"annotations","test_mix.json"))
     coco_imgs = coco_instance.imgs
 
@@ -37,7 +52,17 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
         img_dir = os.path.join(dataset_dir,"images",img_name)
         #if "00b04d25-1db7-4223-8180-8f3df2c46d05" in img_name:
         if True:
+            
+            gtannIds = coco_instance.getAnnIds(imgIds=img_id)
+            gtanns = coco_instance.loadAnns(gtannIds)
+            gtboxes = anns2gtboxes(gtanns)
+
             outputs, img_info = predictor.inference(img_dir)
+            print(outputs)
+            #eval_outputs = get_eval_outputs(outputs)
+            #eval_m.eval_add_result(gtboxes, filed_boxes,image=image,image_name=coco_instance.imgs[img_id]["file_name"])
+            #eval_m.eval_add_result(gtboxes, eval_outputs)
+            '''
             result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
             
             annIds = coco_instance.getAnnIds(imgIds=coco_imgs[img_id]['id'])
@@ -51,6 +76,6 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
                                                         int(y+h)), (0,255,0), 1)
 
             cv2.imwrite("YOLOX_outputs/"+confg_name+"/vis_results/"+img_name,result_image)
-
+            '''
 if __name__ == "__main__":
     eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_512")
