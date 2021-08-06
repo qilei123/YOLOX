@@ -144,15 +144,13 @@ class Predictor(object):
             outputs = self.model(img)
             if self.decoder is not None:
                 outputs = self.decoder(outputs, dtype=outputs.type())
-            #print("---------before nms----------")
-            #print(outputs)
+            print("---------before nms----------")
+            print(outputs)
             outputs = postprocess(
                 outputs, self.num_classes, self.confthre, self.nmsthre
             )
-            
-            if len(outputs)==2:
-                print("---------after nms----------")
-                print(outputs)
+            print("---------after nms----------")
+            print(outputs)
             logger.info("Infer time: {:.4f}s".format(time.time() - t0))
         return outputs, img_info
 
