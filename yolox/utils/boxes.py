@@ -52,12 +52,12 @@ def postprocess(prediction, num_classes, conf_thre=0.7, nms_thre=0.45):
         detections = detections[conf_mask]
         if not detections.size(0):
             continue
-        print("-----------"+str(i)+"----------")
-        print(detections)
+        #print("-----------"+str(i)+"----------")
+        #print(detections)
         nms_out_index = torchvision.ops.batched_nms(
             detections[:, :4],
             detections[:, 4] * detections[:, 5],
-            detections[:, 6],
+            #detections[:, 6],
             nms_thre,
         )
         detections = detections[nms_out_index]
