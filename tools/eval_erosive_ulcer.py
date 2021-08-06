@@ -39,10 +39,10 @@ def get_eval_outputs(output,ratio):
     eval_outputs = []
     for bbox,cls in zip(bboxes,classes):
         bbox = bbox.tolist()
-        print(bbox)
+        #print(bbox)
         bbox.append(cls)
         eval_outputs.append(bbox)
-
+    #print(eval_outputs)
     return eval_outputs
 
 def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512"):
@@ -76,11 +76,11 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
             gtboxes = anns2gtboxes(gtanns)
 
             outputs, img_info = predictor.inference(img_dir)
-            print(outputs)
+            #print(outputs)
             eval_outputs = get_eval_outputs(outputs[0],img_info["ratio"])
-            print(eval_outputs)
+            #print(eval_outputs)
             #eval_m.eval_add_result(gtboxes, filed_boxes,image=image,image_name=coco_instance.imgs[img_id]["file_name"])
-            #eval_m.eval_add_result(gtboxes, eval_outputs)
+            eval_m.eval_add_result(gtboxes, eval_outputs)
             '''
             result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
             
@@ -96,5 +96,44 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
 
             cv2.imwrite("YOLOX_outputs/"+confg_name+"/vis_results/"+img_name,result_image)
             '''
+    category = eval_m.classes
+    evaluation = eval_m.get_result()
+    for key in evaluation:
+        if key in ['overall', 'binary']:
+            print('\n==================== {} ====================='.format(key))
+        elif key == 'confusion_matrix':
+            continue
+        else:
+            print('\n==================== {} ====================='.format(
+                category[key - 1]))
+        print("Precision: {:.4f}  Recall: {:.4f}  F1: {:.4f}  F2: {:.4f}  "
+            "TP: {:3}  FP: {:3}  FN: {:3}  FP+FN: {:3}"
+            .format(evaluation[key]['precision'],
+                    evaluation[key]['recall'],
+                    evaluation[key]['F1'],
+                    evaluation[key]['F2'],
+                    evaluation[key]['TP'],
+                    evaluation[key]['FP'],
+                    evaluation[key]['FN'],
+                    evaluation[key]['FN'] + evaluation[key]['FP']))
+    template = "{:^20}"
+    out_t = ''
+    out = []
+    for i in range(len(category) + 1):
+        out_t = out_t + template
+    out.append(out_t.format('\n  gt class -->', *[i for i in category]))
+    total_proposal = 0
+    for i in range(1, len(category) + 1):
+        cm = []
+        for j in range(1, len(category) + 1):
+            cm.append(evaluation['confusion_matrix'][i][j])
+            total_proposal += evaluation['confusion_matrix'][i][j]
+        out.append(out_t.format(category[i - 1], *cm))
+    print('\n'.join(out))
+    print('\nTotal proposals: {}, Accuracy: {:.4f}'.format(total_proposal,
+                                                        (evaluation['confusion_matrix'][1][1] +
+                                                            evaluation['confusion_matrix'][2][2]) / total_proposal))
+
+
 if __name__ == "__main__":
     eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_512")
