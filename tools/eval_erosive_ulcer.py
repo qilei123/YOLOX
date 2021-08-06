@@ -26,7 +26,7 @@ def anns2gtboxes(gtanns,categories=[1,2]):
             gtboxes.append(xyxy)
     return gtboxes
 
-def get_eval_outputs(output,ratio):
+def get_eval_outputs(output,ratio=1):
     eval_outputs = []
     
     if output is None:
