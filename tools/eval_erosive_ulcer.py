@@ -26,6 +26,23 @@ def anns2gtboxes(gtanns,categories=[1,2]):
             gtboxes.append(xyxy)
     return gtboxes
 
+def get_eval_outputs(output,ratio):
+    output = output.cpu()
+
+    bboxes = output[:, 0:4]
+
+    # preprocessing: resize
+    bboxes /= ratio
+
+    classes = output[:,6]
+
+    eval_outputs = []
+    for bbox,cls in zip(bboxes,classes):
+        bbox.append(cls)
+        eval_outputs.append(bbox)
+
+    return eval_outputs
+
 def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512"):
     exp_file = "exps/erosive_ulcer_mix/"+confg_name+".py"
     exp = get_exp(exp_file, None)
@@ -58,7 +75,8 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
 
             outputs, img_info = predictor.inference(img_dir)
             print(outputs)
-            #eval_outputs = get_eval_outputs(outputs)
+            eval_outputs = get_eval_outputs(outputs,img_info["ratio"])
+            print(eval_outputs)
             #eval_m.eval_add_result(gtboxes, filed_boxes,image=image,image_name=coco_instance.imgs[img_id]["file_name"])
             #eval_m.eval_add_result(gtboxes, eval_outputs)
             '''
