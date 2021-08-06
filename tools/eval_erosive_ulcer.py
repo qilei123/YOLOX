@@ -35,8 +35,8 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
     for img_id in coco_imgs:
         img_name = coco_imgs[img_id]["file_name"]
         img_dir = os.path.join(dataset_dir,"images",img_name)
-        if "00b04d25-1db7-4223-8180-8f3df2c46d05" in img_name:
-        #if True:
+        #if "00b04d25-1db7-4223-8180-8f3df2c46d05" in img_name:
+        if True:
             outputs, img_info = predictor.inference(img_dir)
             result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
             
