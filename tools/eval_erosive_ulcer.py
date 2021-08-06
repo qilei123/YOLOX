@@ -14,8 +14,8 @@ from yolox.utils import fuse_model, get_model_info, postprocess, vis
 
 colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
 
-def eval_erosive_ulcer(dataset_dir):
-    exp_file = "exps/erosive_ulcer_mix/yolox_x_erosive_ulcer_mix_512.py"
+def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512"):
+    exp_file = "exps/erosive_ulcer_mix/"+confg_name+".py"
     exp = get_exp(exp_file, None)
     exp.test_conf = 0.01
     exp.nmsthre = 0.01
@@ -23,7 +23,7 @@ def eval_erosive_ulcer(dataset_dir):
     model.cuda()
     model.eval()
 
-    ckpt_file = "YOLOX_outputs/yolox_x_erosive_ulcer_mix_512/best_ckpt.pth.tar"
+    ckpt_file = "YOLOX_outputs/"+confg_name+"/best_ckpt.pth.tar"
     ckpt = torch.load(ckpt_file, map_location="cpu")
     model.load_state_dict(ckpt["model"])
 
@@ -48,7 +48,7 @@ def eval_erosive_ulcer(dataset_dir):
             cv2.rectangle(result_image, (int(x), int(y)), (int(x+w),
                                                     int(y+h)), (0,255,0), 1)
 
-        cv2.imwrite("YOLOX_outputs/yolox_x_erosive_ulcer_mix_512/vis_results/"+img_name,result_image)
+        cv2.imwrite("YOLOX_outputs/"+confg_name+"/vis_results/"+img_name,result_image)
 
 if __name__ == "__main__":
-    eval_erosive_ulcer("datasets/gastric_object_detection/")
+    eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_412")
