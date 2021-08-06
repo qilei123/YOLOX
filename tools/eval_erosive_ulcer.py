@@ -95,7 +95,7 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
                 cv2.putText(result_image, Erosive_Ulcer[int(pre_box[4])-1], (int(pre_box[0]), int(
                     pre_box[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1, cv2.LINE_AA)
                 cv2.rectangle(result_image, (int(pre_box[0]), int(pre_box[1])), (int(pre_box[2]),
-                                                        int(pre_box[3])), (0,255,0), 1)                
+                                                        int(pre_box[3])), (0,0,255), 1)                
 
             for ann in gtanns:
                 [x, y, w, h] = ann['bbox']
