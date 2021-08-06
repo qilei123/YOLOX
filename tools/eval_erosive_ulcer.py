@@ -28,7 +28,7 @@ def anns2gtboxes(gtanns,categories=[1,2]):
 
 def get_eval_outputs(output,ratio):
     output = output.cpu()
-
+    output = output.numpy()
     bboxes = output[:, 0:4]
 
     # preprocessing: resize
