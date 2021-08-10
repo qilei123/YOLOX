@@ -165,6 +165,8 @@ class Predictor(object):
         bboxes /= ratio
 
         cls = output[:, 6]
+        print("output1")
+        print(cls)
         scores = output[:, 4] * output[:, 5]
 
         vis_res = vis(img, bboxes, scores, cls, cls_conf, self.cls_names)
