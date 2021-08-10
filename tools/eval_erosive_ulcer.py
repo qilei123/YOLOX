@@ -39,13 +39,11 @@ def get_eval_outputs(output,ratio):
     bboxes /= ratio
 
     classes = output[:,6]
-    print("output1")
-    print(classes)
     
     for bbox,cls in zip(bboxes,classes):
         bbox = bbox.tolist()
         #print(bbox)
-        bbox.append(cls)
+        bbox.append(cls+1)
         eval_outputs.append(bbox)
     #print(eval_outputs)
     return eval_outputs
