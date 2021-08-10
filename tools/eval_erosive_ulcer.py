@@ -85,7 +85,7 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
             #eval_m.eval_add_result(gtboxes, filed_boxes,image=image,image_name=coco_instance.imgs[img_id]["file_name"])
             eval_m.eval_add_result(gtboxes, eval_outputs)
             
-            result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
+            #result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
             #result_image = predictor.visual(None, img_info, predictor.confthre)
             #annIds = coco_instance.getAnnIds(imgIds=coco_imgs[img_id]['id'])
             #anns = coco_instance.loadAnns(annIds)
