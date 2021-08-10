@@ -29,12 +29,12 @@ class Exp(MyExp):
         self.max_epoch = 150
 
         # --------------- transform config ----------------- #
-        self.degrees = 90.0
-        self.translate = 0.1
-        self.scale = (0.8, 1.2)
+        self.degrees = 30.0
+        self.translate = 0.2
+        self.scale = (0.1, 2)
         self.shear = 2.0
         self.perspective = 0.0
-        self.enable_mixup = True        
+        self.enable_mixup = True      
 
         self.test_size = (412, 412)
         self.test_conf = 0.05

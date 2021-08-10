@@ -48,7 +48,7 @@ def get_eval_outputs(output,ratio):
     #print(eval_outputs)
     return eval_outputs
 
-def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",score = 0.01):
+def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",score = 0.01,vis = False):
     exp_file = "exps/erosive_ulcer_mix/"+confg_name+".py"
     exp = get_exp(exp_file, None)
     exp.test_conf = score
@@ -84,28 +84,28 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",
             #print(eval_outputs)
             #eval_m.eval_add_result(gtboxes, filed_boxes,image=image,image_name=coco_instance.imgs[img_id]["file_name"])
             eval_m.eval_add_result(gtboxes, eval_outputs)
-            '''
-            #result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
-            result_image = predictor.visual(None, img_info, predictor.confthre)
-            #annIds = coco_instance.getAnnIds(imgIds=coco_imgs[img_id]['id'])
-            #anns = coco_instance.loadAnns(annIds)
+            if vis:
+                #result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
+                result_image = predictor.visual(None, img_info, predictor.confthre)
+                #annIds = coco_instance.getAnnIds(imgIds=coco_imgs[img_id]['id'])
+                #anns = coco_instance.loadAnns(annIds)
 
-            for pre_box in eval_outputs:
-                cv2.putText(result_image, Erosive_Ulcer[int(pre_box[4])-1], (int(pre_box[0]), int(
-                    pre_box[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1, cv2.LINE_AA)
-                cv2.rectangle(result_image, (int(pre_box[0]), int(pre_box[1])), (int(pre_box[2]),
-                                                        int(pre_box[3])), (0,0,255), 1)                
+                for pre_box in eval_outputs:
+                    cv2.putText(result_image, Erosive_Ulcer[int(pre_box[4])-1], (int(pre_box[0]), int(
+                        pre_box[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1, cv2.LINE_AA)
+                    cv2.rectangle(result_image, (int(pre_box[0]), int(pre_box[1])), (int(pre_box[2]),
+                                                            int(pre_box[3])), (0,0,255), 1)                
 
-            for ann in gtanns:
-                [x, y, w, h] = ann['bbox']
-                # print(ann['category_id'])
-                cv2.putText(result_image, Erosive_Ulcer[ann['category_id']-1], (int(x), int(
-                    y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 1, cv2.LINE_AA)
-                cv2.rectangle(result_image, (int(x), int(y)), (int(x+w),
-                                                        int(y+h)), (0,255,0), 1)
+                for ann in gtanns:
+                    [x, y, w, h] = ann['bbox']
+                    # print(ann['category_id'])
+                    cv2.putText(result_image, Erosive_Ulcer[ann['category_id']-1], (int(x), int(
+                        y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 1, cv2.LINE_AA)
+                    cv2.rectangle(result_image, (int(x), int(y)), (int(x+w),
+                                                            int(y+h)), (0,255,0), 1)
 
-            cv2.imwrite("YOLOX_outputs/"+confg_name+"/vis_results/"+img_name,result_image)
-            '''
+                cv2.imwrite("YOLOX_outputs/"+confg_name+"/vis_results/"+img_name,result_image)
+            
     category = eval_m.classes
     evaluation = eval_m.get_result()
     for key in evaluation:
