@@ -48,10 +48,10 @@ def get_eval_outputs(output,ratio):
     #print(eval_outputs)
     return eval_outputs
 
-def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512"):
+def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",score = 0.01):
     exp_file = "exps/erosive_ulcer_mix/"+confg_name+".py"
     exp = get_exp(exp_file, None)
-    exp.test_conf = 0.01
+    exp.test_conf = score
     exp.nmsthre = 0.1
     model = exp.get_model()
     model.cuda()
@@ -84,9 +84,9 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
             #print(eval_outputs)
             #eval_m.eval_add_result(gtboxes, filed_boxes,image=image,image_name=coco_instance.imgs[img_id]["file_name"])
             eval_m.eval_add_result(gtboxes, eval_outputs)
-            
+            '''
             #result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
-            #result_image = predictor.visual(None, img_info, predictor.confthre)
+            result_image = predictor.visual(None, img_info, predictor.confthre)
             #annIds = coco_instance.getAnnIds(imgIds=coco_imgs[img_id]['id'])
             #anns = coco_instance.loadAnns(annIds)
 
@@ -105,7 +105,7 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
                                                         int(y+h)), (0,255,0), 1)
 
             cv2.imwrite("YOLOX_outputs/"+confg_name+"/vis_results/"+img_name,result_image)
-            
+            '''
     category = eval_m.classes
     evaluation = eval_m.get_result()
     for key in evaluation:
@@ -146,4 +146,6 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512")
 
 
 if __name__ == "__main__":
-    eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_512")
+    score_list = [i*0.01 for i in range(1,40)]
+    for score in score_list:
+        eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_512",score=score)
