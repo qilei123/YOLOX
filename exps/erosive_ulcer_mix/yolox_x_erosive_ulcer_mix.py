@@ -26,6 +26,9 @@ class Exp(MyExp):
         self.data_num_workers = 1
         self.input_size = (640, 640)
 
+        self.test_conf = 0.01
+        self.nmsthre = 0.1
+
     def get_data_loader(self, batch_size, is_distributed, no_aug=False):
         from yolox.data import (
             ErosiveUlcer,
