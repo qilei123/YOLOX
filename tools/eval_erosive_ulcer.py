@@ -1,6 +1,6 @@
 from demo import Predictor
 from pycocotools.coco import COCO
-
+from tqdm import tqdm
 from metric_polyp_multiclass import MetricMulticlass
 
 import cv2
@@ -58,7 +58,7 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",
     model.cuda()
     model.eval()
 
-    ckpt_file = "YOLOX_outputs/"+confg_name+"/best_ckpt.pth.tar"
+    ckpt_file = "YOLOX_outputs/"+confg_name+"/best_ckpt.pth"
     ckpt = torch.load(ckpt_file, map_location="cpu")
     model.load_state_dict(ckpt["model"])
 
@@ -70,7 +70,7 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",
     coco_instance = COCO(os.path.join(dataset_dir,"annotations","test_mix.json"))
     coco_imgs = coco_instance.imgs
 
-    for img_id in coco_imgs:
+    for img_id in tqdm(coco_imgs):
         img_name = coco_imgs[img_id]["file_name"]
         img_dir = os.path.join(dataset_dir,"images",img_name)
         #if "00b04d25-1db7-4223-8180-8f3df2c46d05" in img_name:
