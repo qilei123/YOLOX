@@ -49,6 +49,7 @@ def get_eval_outputs(output,ratio):
     return eval_outputs
 
 def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",score = 0.01,vis = False):
+    print(confg_name)
     exp_file = "exps/erosive_ulcer_mix/"+confg_name+".py"
     exp = get_exp(exp_file, None)
     exp.test_conf = score
