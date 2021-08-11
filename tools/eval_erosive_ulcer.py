@@ -146,10 +146,10 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",
 
 
 if __name__ == "__main__":
-    eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_412",0.15)
-    '''
-    score_list = [i*0.01 for i in range(1,40)]
+    #eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_412",0.15)
+    
+    score_list = [i*0.01 for i in range(10,20)]
     for score in score_list:
         print("----------"+str(score)+"-----------")
         eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_412",score=score)
-    '''
+    
