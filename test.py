@@ -8,8 +8,5 @@ M = cv2.getRotationMatrix2D((cols/2,rows/2),45,1)
 #第三个参数：变换后的图像大小 
 res = cv2.warpAffine(img,M,(rows,cols)) 
 
+cv2.imwrite("/data2/qilei_chen/DATA/trans_drone/videos/results1/test1.jpg",res)
 
-plt.subplot(121) 
-plt.imshow(img) 
-plt.subplot(122) 
-plt.imshow(res)
