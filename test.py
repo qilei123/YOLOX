@@ -6,7 +6,7 @@ rows,cols = img.shape[:2]
 #第一个参数旋转中心，第二个参数旋转角度，第三个参数：缩放比例 
 M = cv2.getRotationMatrix2D(angle=5, center=(0, 0), scale=1) 
 #第三个参数：变换后的图像大小 
-res = cv2.warpAffine(img,M,(cols,rows)) 
+res = cv2.warpPerspective(img,M,(cols,rows)) 
 
 cv2.imwrite("/data2/qilei_chen/DATA/trans_drone/videos/results1/test1.jpg",res)
 
