@@ -32,6 +32,8 @@ class Exp(MyExp):
         self.test_conf = 0.01
         self.nmsthre = 0.1
 
+        self.scale = (0.8, 1.2)
+
         self.eval_interval = 1
 
     def get_data_loader(self, batch_size, is_distributed, no_aug=False):
