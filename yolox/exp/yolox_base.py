@@ -112,7 +112,7 @@ class Exp(BaseExp):
             degrees=self.degrees,
             translate=self.translate,
             scale=self.scale,
-            mscale= self.scale,
+            #mscale= self.scale,
             shear=self.shear,
             perspective=self.perspective,
             enable_mixup=self.enable_mixup,

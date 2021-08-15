@@ -28,17 +28,11 @@ class Exp(MyExp):
 
         self.max_epoch = 300
 
-        # --------------- transform config ----------------- #
-        self.degrees = 90.0
-        self.translate = 0.1
-        self.scale = (0.8, 1.2)
-        self.shear = 2.0
-        self.perspective = 0.0
-        self.enable_mixup = True      
-
         self.test_size = (412, 412)
-        self.test_conf = 0.05
+        self.test_conf = 0.01
         self.nmsthre = 0.1
+        
+        self.eval_interval = 1
 
     def get_data_loader(self, batch_size, is_distributed, no_aug=False):
         from yolox.data import (
