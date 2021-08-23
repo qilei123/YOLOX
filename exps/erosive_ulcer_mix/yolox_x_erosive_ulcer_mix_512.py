@@ -64,6 +64,7 @@ class Exp(MyExp):
                 img_size=self.input_size,
                 preproc=TrainTransform(max_labels=50),
                 cache=cache_img,
+                name="images",
             )
 
         dataset = MosaicDetection(
