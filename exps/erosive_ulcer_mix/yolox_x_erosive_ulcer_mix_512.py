@@ -36,6 +36,7 @@ class Exp(MyExp):
         self.basic_lr_per_img = 0.01 / 16.0
 
         self.eval_interval = 1
+        self.print_interval = 40
 
     def get_data_loader(self, batch_size, is_distributed, no_aug=False):
         from yolox.data import (
