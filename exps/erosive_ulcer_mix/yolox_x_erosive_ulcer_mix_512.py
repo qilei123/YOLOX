@@ -32,7 +32,7 @@ class Exp(MyExp):
         self.test_conf = 0.01
         self.nmsthre = 0.1
 
-        self.scale = (0.5, 1.5)
+        #self.scale = (0.5, 1.5)
 
         self.eval_interval = 1
 
