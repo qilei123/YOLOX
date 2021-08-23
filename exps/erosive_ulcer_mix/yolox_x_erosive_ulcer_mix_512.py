@@ -33,6 +33,7 @@ class Exp(MyExp):
         self.nmsthre = 0.1
 
         #self.scale = (0.5, 1.5)
+        self.basic_lr_per_img = 0.01 / 16.0
 
         self.eval_interval = 1
 
