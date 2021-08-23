@@ -54,8 +54,8 @@ class Exp(MyExp):
             img_size=self.input_size,
             name="images",
             preproc=TrainTransform(
-                rgb_means=(0.485, 0.456, 0.406),
-                std=(0.229, 0.224, 0.225),
+                #rgb_means=(0.485, 0.456, 0.406),
+                #std=(0.229, 0.224, 0.225),
                 max_labels=50,
             ),
         )
@@ -65,8 +65,8 @@ class Exp(MyExp):
             mosaic=not no_aug,
             img_size=self.input_size,
             preproc=TrainTransform(
-                rgb_means=(0.485, 0.456, 0.406),
-                std=(0.229, 0.224, 0.225),
+                #rgb_means=(0.485, 0.456, 0.406),
+                #std=(0.229, 0.224, 0.225),
                 max_labels=120,
             ),
             degrees=self.degrees,
