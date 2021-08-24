@@ -33,7 +33,7 @@ class Exp(MyExp):
         self.nmsthre = 0.1
         
         self.eval_interval = 1
-        self.print_interval = 40
+        self.print_interval = 20
 
 
     def get_data_loader(
