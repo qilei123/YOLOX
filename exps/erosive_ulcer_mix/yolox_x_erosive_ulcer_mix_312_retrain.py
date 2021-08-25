@@ -24,13 +24,13 @@ class Exp(MyExp):
         self.val_ann = "test_mix.json"
 
         self.data_num_workers = 1
-        self.input_size = (312, 312)
+        self.input_size = (320, 320)
 
         self.max_epoch = 150
         self.eval_interval = 1
         self.print_interval = 50
         
-        self.test_size = (312, 312)
+        self.test_size = (320, 320)
         self.test_conf = 0.05
         self.nmsthre = 0.1
 
