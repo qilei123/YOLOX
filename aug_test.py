@@ -5,4 +5,4 @@ img = cv2.imread("/data1/qilei_chen/DEVELOPMENTS/YOLOX/datasets/gastric_object_d
 
 res_img,_ = random_perspective(img,scale=[0.1,1.5])
 
-cv2.imwrite("datasets/test.jpg",res_img)
+cv2.imwrite("datasets/test1.jpg",res_img)
