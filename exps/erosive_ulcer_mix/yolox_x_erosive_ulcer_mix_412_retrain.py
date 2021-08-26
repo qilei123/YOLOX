@@ -29,8 +29,7 @@ class Exp(MyExp):
         self.max_epoch = 300
         self.eval_interval = 1
         self.print_interval = 50
-        self.no_aug_epochs = 299
-        self.enable_mixup = False
+        self.no_aug_epochs = 15
         
         self.test_size = (412, 412)
         self.test_conf = 0.05
