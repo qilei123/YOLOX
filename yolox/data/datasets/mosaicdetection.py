@@ -67,8 +67,6 @@ class MosaicDetection(Dataset):
         self.shear = shear
         self.perspective = perspective
         self.mixup_scale = mscale
-        print("---------mosaic----------")
-        print(mosaic)
         self.enable_mosaic = mosaic
         self.enable_mixup = enable_mixup
 
