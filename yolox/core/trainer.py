@@ -145,10 +145,6 @@ class Trainer:
 
         # data related init
         self.no_aug = self.start_epoch >= self.max_epoch - self.exp.no_aug_epochs
-        print("---------mosaic----------")
-        print(self.start_epoch)
-        print(self.max_epoch)
-        print(self.exp.no_aug_epochs)
         self.train_loader = self.exp.get_data_loader(
             batch_size=self.args.batch_size,
             is_distributed=self.is_distributed,
@@ -194,7 +190,8 @@ class Trainer:
 
     def before_epoch(self):
         logger.info("---> start train epoch{}".format(self.epoch + 1))
-
+        print(self.epoch + 1 == self.max_epoch - self.exp.no_aug_epochs)
+        print(self.no_aug)
         if self.epoch + 1 == self.max_epoch - self.exp.no_aug_epochs or self.no_aug:
             logger.info("--->No mosaic aug now!")
             self.train_loader.close_mosaic()
