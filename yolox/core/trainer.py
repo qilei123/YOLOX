@@ -190,8 +190,7 @@ class Trainer:
 
     def before_epoch(self):
         logger.info("---> start train epoch{}".format(self.epoch + 1))
-        print(self.epoch + 1 == self.max_epoch - self.exp.no_aug_epochs)
-        print(self.no_aug)
+
         if self.epoch + 1 == self.max_epoch - self.exp.no_aug_epochs or self.no_aug:
             logger.info("--->No mosaic aug now!")
             self.train_loader.close_mosaic()
