@@ -62,11 +62,11 @@ class Exp(MyExp):
             dataset,
             mosaic=not no_aug,
             img_size=self.input_size,
-            #preproc=TrainTransform(
-            #    rgb_means=(0.485, 0.456, 0.406),
-            #    std=(0.229, 0.224, 0.225),
-            #    max_labels=120,
-            #),
+            preproc=TrainTransform(
+                #rgb_means=(0.485, 0.456, 0.406),
+                #std=(0.229, 0.224, 0.225),
+                max_labels=120,
+            ),
             degrees=self.degrees,
             translate=self.translate,
             scale=self.scale,
