@@ -30,9 +30,9 @@ class Exp(MyExp):
         self.eval_interval = 1
         self.print_interval = 50
         self.no_aug_epochs = 15
-        self.enable_mixup = False
+        #self.enable_mixup = False
         
-        self.test_size = (412, 412)
+        self.test_size = self.input_size
         self.test_conf = 0.05
         self.nmsthre = 0.1
 
@@ -62,11 +62,11 @@ class Exp(MyExp):
             dataset,
             mosaic=not no_aug,
             img_size=self.input_size,
-            preproc=TrainTransform(
-                rgb_means=(0.485, 0.456, 0.406),
-                std=(0.229, 0.224, 0.225),
-                max_labels=120,
-            ),
+            #preproc=TrainTransform(
+            #    rgb_means=(0.485, 0.456, 0.406),
+            #    std=(0.229, 0.224, 0.225),
+            #    max_labels=120,
+            #),
             degrees=self.degrees,
             translate=self.translate,
             scale=self.scale,
