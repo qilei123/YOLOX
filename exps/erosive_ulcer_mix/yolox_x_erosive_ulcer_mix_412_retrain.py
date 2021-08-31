@@ -25,6 +25,7 @@ class Exp(MyExp):
 
         self.data_num_workers = 1
         self.input_size = (412, 412)
+        self.scale = (0.5, 1.5)
 
         self.max_epoch = 300
         self.eval_interval = 1
@@ -63,8 +64,8 @@ class Exp(MyExp):
             mosaic=not no_aug,
             img_size=self.input_size,
             preproc=TrainTransform(
-                #rgb_means=(0.485, 0.456, 0.406),
-                #std=(0.229, 0.224, 0.225),
+                rgb_means=(0.485, 0.456, 0.406),
+                std=(0.229, 0.224, 0.225),
                 max_labels=120,
             ),
             degrees=self.degrees,
