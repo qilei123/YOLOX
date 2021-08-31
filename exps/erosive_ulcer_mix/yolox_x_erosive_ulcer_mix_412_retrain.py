@@ -32,6 +32,8 @@ class Exp(MyExp):
         self.print_interval = 50
         self.no_aug_epochs = 15
         #self.enable_mixup = False
+
+        self.degrees =45.0
         
         self.test_size = self.input_size
         self.test_conf = 0.05
