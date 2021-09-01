@@ -33,7 +33,7 @@ class Exp(MyExp):
         self.no_aug_epochs = 15
         #self.enable_mixup = False
 
-        self.degrees =15.0
+        self.degrees =20.0
         
         self.test_size = self.input_size
         self.test_conf = 0.05
