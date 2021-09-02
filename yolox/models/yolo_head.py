@@ -24,6 +24,7 @@ class YOLOXHead(nn.Module):
         in_channels=[256, 512, 1024],
         act="silu",
         depthwise=False,
+        use_l1 = False,
     ):
         """
         Args:
@@ -122,7 +123,7 @@ class YOLOXHead(nn.Module):
                 )
             )
 
-        self.use_l1 = False
+        self.use_l1 = use_l1
         self.l1_loss = nn.L1Loss(reduction="none")
         self.bcewithlog_loss = nn.BCEWithLogitsLoss(reduction="none")
         self.iou_loss = IOUloss(reduction="none")

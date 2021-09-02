@@ -32,6 +32,27 @@ class Exp(MyExp):
         self.test_conf = 0.01
         self.nmsthre = 0.1
 
+        self.use_l1 = True
+
+    def get_model(self):
+        from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
+
+        def init_yolo(M):
+            for m in M.modules():
+                if isinstance(m, nn.BatchNorm2d):
+                    m.eps = 1e-3
+                    m.momentum = 0.03
+
+        if getattr(self, "model", None) is None:
+            in_channels = [256, 512, 1024]
+            backbone = YOLOPAFPN(self.depth, self.width, in_channels=in_channels)
+            head = YOLOXHead(self.num_classes, self.width, in_channels=in_channels,use_l1=self.use_l1)
+            self.model = YOLOX(backbone, head)
+
+        self.model.apply(init_yolo)
+        self.model.head.initialize_biases(1e-2)
+        return self.model
+
     def get_data_loader(self, batch_size, is_distributed, no_aug=False):
         from yolox.data import (
             ErosiveUlcer,
