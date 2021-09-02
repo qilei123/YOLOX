@@ -5,6 +5,6 @@
 from .coco import COCODataset, ErosiveUlcer
 from .coco_classes import COCO_CLASSES,Erosive_Ulcer
 from .datasets_wrapper import ConcatDataset, Dataset, MixConcatDataset
-from .mosaicdetection import MosaicDetection
+from .mosaicdetection import MosaicDetection,MosaicDetectionP
 from .voc import VOCDetection
 #from .erosive_ulcer_mix import ErosiveUlcer
