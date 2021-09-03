@@ -36,6 +36,8 @@ class Exp(MyExp):
         self.nmsthre = 0.1
         self.use_l1 = True
 
+        self.mosaicp = 0.8
+
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
 
@@ -61,7 +63,7 @@ class Exp(MyExp):
             YoloBatchSampler,
             DataLoader,
             InfiniteSampler,
-            MosaicDetection,
+            MosaicDetectionP,
         )
 
         dataset = ErosiveUlcer(
@@ -76,9 +78,10 @@ class Exp(MyExp):
             ),
         )
 
-        dataset = MosaicDetection(
+        dataset = MosaicDetectionP(
             dataset,
             mosaic=not no_aug,
+            possibility=self.mosaicp,
             img_size=self.input_size,
             preproc=TrainTransform(
                 rgb_means=(0.485, 0.456, 0.406),
