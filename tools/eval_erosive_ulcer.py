@@ -48,7 +48,7 @@ def get_eval_outputs(output,ratio):
     #print(eval_outputs)
     return eval_outputs
 
-def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",score = 0.01,vis = False):
+def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",param_file = "best_ckpt.pth",score = 0.01,vis = False):
     print(confg_name)
     exp_file = "exps/erosive_ulcer_mix/"+confg_name+".py"
     exp = get_exp(exp_file, None)
@@ -58,7 +58,7 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",
     model.cuda()
     model.eval()
 
-    ckpt_file = "YOLOX_outputs/"+confg_name+"/best_ckpt.pth.tar"
+    ckpt_file = "YOLOX_outputs/"+confg_name+"/"+param_file
     ckpt = torch.load(ckpt_file, map_location="cpu")
     model.load_state_dict(ckpt["model"])
 
@@ -152,5 +152,5 @@ if __name__ == "__main__":
     score_list = [i*0.01 for i in range(10,20)]
     for score in score_list:
         print("----------"+str(score)+"-----------")
-        eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_412",score=score)
+        eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_512",param_file="best_ckpt488_388.pth",score=score)
     
