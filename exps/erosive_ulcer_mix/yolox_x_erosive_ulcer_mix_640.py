@@ -23,7 +23,7 @@ class Exp(MyExp):
         self.train_ann = "train_mix.json"
         self.val_ann = "test_mix.json"
 
-        self.max_epoch = 200
+        self.max_epoch = 300
         self.eval_interval = 1
         self.print_interval = 50
         self.degrees =20.0
