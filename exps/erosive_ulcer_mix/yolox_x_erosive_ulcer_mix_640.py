@@ -34,6 +34,8 @@ class Exp(MyExp):
 
         self.use_l1 = True
 
+        self.mosaicp = 0.8
+
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
 
@@ -52,7 +54,6 @@ class Exp(MyExp):
         self.model.apply(init_yolo)
         self.model.head.initialize_biases(1e-2)
         return self.model
-
     def get_data_loader(self, batch_size, is_distributed, no_aug=False):
         from yolox.data import (
             ErosiveUlcer,
@@ -60,7 +61,7 @@ class Exp(MyExp):
             YoloBatchSampler,
             DataLoader,
             InfiniteSampler,
-            MosaicDetection,
+            MosaicDetectionP,
         )
 
         dataset = ErosiveUlcer(
@@ -75,9 +76,10 @@ class Exp(MyExp):
             ),
         )
 
-        dataset = MosaicDetection(
+        dataset = MosaicDetectionP(
             dataset,
             mosaic=not no_aug,
+            possibility=self.mosaicp,
             img_size=self.input_size,
             preproc=TrainTransform(
                 rgb_means=(0.485, 0.456, 0.406),
@@ -91,6 +93,7 @@ class Exp(MyExp):
             perspective=self.perspective,
             enable_mixup=self.enable_mixup,
         )
+
 
         self.dataset = dataset
 
