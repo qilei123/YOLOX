@@ -23,6 +23,7 @@ class Exp(MyExp):
         self.train_ann = "train_mix.json"
         self.val_ann = "test_mix.json"
 
+        self.print_interval = 50
         self.data_num_workers = 1
         self.input_size = (412, 412)
         self.degrees =20.0
