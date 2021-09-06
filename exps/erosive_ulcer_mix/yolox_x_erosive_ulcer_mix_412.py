@@ -25,6 +25,7 @@ class Exp(MyExp):
 
         self.print_interval = 50
         self.data_num_workers = 1
+        self.eval_interval = 1
         self.input_size = (412, 412)
         self.degrees =20.0
         self.max_epoch = 300
