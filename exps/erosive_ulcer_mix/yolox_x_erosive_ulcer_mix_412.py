@@ -36,7 +36,7 @@ class Exp(MyExp):
 
         self.use_l1 = True
 
-        self.mosaicp = 0.7#0.8_20 488_340#0.9_20 480_327#0.65_20 494_335
+        self.mosaicp = 0.9#0.7_20 457_307
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
