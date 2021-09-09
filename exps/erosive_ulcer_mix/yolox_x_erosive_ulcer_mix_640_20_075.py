@@ -31,7 +31,7 @@ class Exp(MyExp):
         self.input_size = (640, 640)
         self.test_conf = 0.01
         self.nmsthre = 0.1
-        self.basic_lr_per_img = 0.01 / 128.0
+        #self.basic_lr_per_img = 0.01 / 128.0
         self.use_l1 = True
 
         self.mosaicp = 0.75

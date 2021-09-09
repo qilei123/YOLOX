@@ -1,5 +1,5 @@
-export CUDA_VISIBLE_DEVICES=0,1,2,3&&python tools/train.py -f exps/erosive_ulcer_mix/yolox_x_erosive_ulcer_mix_640_15_07.py -d 4 -b 48 --fp16 -c ./pre_weights/yolox_x.pth
-export CUDA_VISIBLE_DEVICES=0,1,2,3&&python tools/train.py -f exps/erosive_ulcer_mix/yolox_x_erosive_ulcer_mix_640_25_07.py -d 4 -b 48 --fp16 -c ./pre_weights/yolox_x.pth
+export CUDA_VISIBLE_DEVICES=0,1,2,3&&python tools/train.py -f exps/erosive_ulcer_mix/yolox_x_erosive_ulcer_mix_640_15_07.py -d 4 -b 16 --fp16 -c ./pre_weights/yolox_x.pth
+export CUDA_VISIBLE_DEVICES=0,1,2,3&&python tools/train.py -f exps/erosive_ulcer_mix/yolox_x_erosive_ulcer_mix_640_25_07.py -d 4 -b 16 --fp16 -c ./pre_weights/yolox_x.pth
 #export CUDA_VISIBLE_DEVICES=0,1,2,3&&python tools/train.py -f exps/erosive_ulcer_mix/yolox_x_erosive_ulcer_mix_640_20_075.py -d 4 -b 48 --fp16 -c ./pre_weights/yolox_x.pth
 #export CUDA_VISIBLE_DEVICES=0,1,2,3&&python tools/train.py -f exps/erosive_ulcer_mix/yolox_x_erosive_ulcer_mix_640_20_065.py -d 4 -b 48 --fp16 -c ./pre_weights/yolox_x.pth
 #export CUDA_VISIBLE_DEVICES=0,1,2,3&&python tools/train.py -f exps/erosive_ulcer_mix/yolox_x_erosive_ulcer_mix_640_20_075.py -d 4 -b 48 --fp16 -c ./pre_weights/yolox_x.pth
