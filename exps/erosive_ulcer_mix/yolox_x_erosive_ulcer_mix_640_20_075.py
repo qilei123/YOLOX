@@ -34,7 +34,7 @@ class Exp(MyExp):
         #self.basic_lr_per_img = 0.01 / 128.0
         self.use_l1 = True
 
-        self.mosaicp = 0.75
+        self.mosaicp = 0.75 #486_345
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
