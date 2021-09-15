@@ -152,5 +152,5 @@ if __name__ == "__main__":
     score_list = [i*0.01 for i in range(10,30)]
     for score in score_list:
         print("----------"+str(score)+"-----------")
-        eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_640_20_085",param_file="best_ckpt.pth",score=score)
+        eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_512_retrain",param_file="best_ckpt496_341.pth",score=score)
     
