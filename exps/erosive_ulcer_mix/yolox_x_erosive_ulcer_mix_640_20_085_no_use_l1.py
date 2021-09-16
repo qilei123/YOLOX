@@ -26,15 +26,15 @@ class Exp(MyExp):
         self.max_epoch = 300
         self.eval_interval = 1
         self.print_interval = 50
-        self.degrees =15.0
+        self.degrees =20.0
 
         self.input_size = (640, 640)
         self.test_conf = 0.01
         self.nmsthre = 0.1
 
-        self.use_l1 = True
+        self.use_l1 = False
 
-        self.mosaicp = 0.85#485 340
+        self.mosaicp = 0.85#495 350
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead

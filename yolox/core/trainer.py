@@ -314,9 +314,11 @@ class Trainer:
             self.tblogger.add_scalar("val/COCOAP50_95", ap50_95, self.epoch + 1)
             logger.info("\n" + summary)
         synchronize()
-
-        self.save_ckpt("last_epoch", ap50 > self.best_ap)
-        self.best_ap = max(self.best_ap, ap50)
+        bap = ap50
+        if self.args.bap == "ap50_95":
+            bap = ap50_95
+        self.save_ckpt("last_epoch", bap > self.best_ap)
+        self.best_ap = max(self.best_ap, bap)
 
     def save_ckpt(self, ckpt_name, update_best_ckpt=False):
         if self.rank == 0:
