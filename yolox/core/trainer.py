@@ -315,7 +315,7 @@ class Trainer:
             logger.info("\n" + summary)
         synchronize()
         bap = ap50
-        if self.args.bap == "ap50_95":
+        if self.exp.bap == "ap50_95":
             bap = ap50_95
         self.save_ckpt("last_epoch", bap > self.best_ap)
         self.best_ap = max(self.best_ap, bap)
