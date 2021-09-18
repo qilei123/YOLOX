@@ -32,7 +32,7 @@ class Exp(MyExp):
         self.test_conf = 0.01
         self.nmsthre = 0.1
 
-        self.use_l1 = True
+        self.use_l1 = False
 
         self.random_use_l1 = 0.5
 
