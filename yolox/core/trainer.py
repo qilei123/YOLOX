@@ -190,21 +190,7 @@ class Trainer:
         )
 
     def before_epoch(self):
-        logger.info("---> start train epoch{}".format(self.epoch + 1))
-
-        if hasattr(self.exp,"random_use_l1") and random.random()<self.exp.random_use_l1:
-            logger.info("--->No mosaic aug now!")
-            self.train_loader.close_mosaic()
-            logger.info("--->Add additional L1 loss now!")
-            if self.is_distributed:
-                self.model.module.head.use_l1 = True
-            else:
-                self.model.head.use_l1 = True
-        else:
-            if self.is_distributed:
-                self.model.module.head.use_l1 = False
-            else:
-                self.model.head.use_l1 = False    
+        logger.info("---> start train epoch{}".format(self.epoch + 1))  
         
         if self.epoch + 1 == self.max_epoch - self.exp.no_aug_epochs or self.no_aug:
             logger.info("--->No mosaic aug now!")
