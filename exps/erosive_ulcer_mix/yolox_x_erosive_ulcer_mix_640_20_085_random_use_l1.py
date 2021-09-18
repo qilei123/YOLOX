@@ -32,9 +32,11 @@ class Exp(MyExp):
         self.test_conf = 0.01
         self.nmsthre = 0.1
 
-        self.use_l1 = False
+        self.use_l1 = True
 
-        self.mosaicp = 0.85#496 350
+        self.random_use_l1 = 0.5
+
+        self.mosaicp = 0.85#495 350
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
