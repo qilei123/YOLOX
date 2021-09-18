@@ -200,6 +200,11 @@ class Trainer:
                 self.model.module.head.use_l1 = True
             else:
                 self.model.head.use_l1 = True
+        else:
+            if self.is_distributed:
+                self.model.module.head.use_l1 = False
+            else:
+                self.model.head.use_l1 = False    
         
         if self.epoch + 1 == self.max_epoch - self.exp.no_aug_epochs or self.no_aug:
             logger.info("--->No mosaic aug now!")
