@@ -86,3 +86,4 @@ COCO_CLASSES = (
 )
 
 Erosive_Ulcer=("erosive","ulcer")
+Erosive_Ulcer3=("erosive","ulcer","other")

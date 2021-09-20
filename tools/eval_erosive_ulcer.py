@@ -8,7 +8,7 @@ import os
 import torch
 
 from yolox.data.data_augment import preproc
-from yolox.data.datasets import COCO_CLASSES,Erosive_Ulcer
+from yolox.data.datasets import COCO_CLASSES,Erosive_Ulcer,Erosive_Ulcer3
 from yolox.exp import get_exp
 from yolox.utils import fuse_model, get_model_info, postprocess, vis
 
