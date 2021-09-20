@@ -15,13 +15,13 @@ from yolox.exp import Exp as MyExp
 class Exp(MyExp):
     def __init__(self):
         super(Exp, self).__init__()
-        self.num_classes = 3
+        self.num_classes = 2
         self.depth = 1.33
         self.width = 1.25
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
-        self.train_ann = "trainfp0803.json"
-        self.val_ann = "test.json"
+        self.train_ann = "train_mix.json"
+        self.val_ann = "test_mix.json"
 
         self.data_num_workers = 1
         self.input_size = (512, 512)
@@ -29,14 +29,14 @@ class Exp(MyExp):
         self.max_epoch = 300
         self.eval_interval = 1
         self.print_interval = 50
-        self.degrees =20.0 #0.7_25 489_345
+        self.degrees =25.0 #0.7_25 489_345
         
         self.test_size = (512, 512)
         self.test_conf = 0.01
         self.nmsthre = 0.1
         self.use_l1 = True
 
-        self.mosaicp = 0.8#0.8_20 488_340#0.9_20 480_327#0.65_20 494_335
+        self.mosaicp = 0.7#0.8_20 488_340#0.9_20 480_327#0.65_20 494_335
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead

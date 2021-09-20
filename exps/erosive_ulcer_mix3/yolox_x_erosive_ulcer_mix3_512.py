@@ -15,13 +15,13 @@ from yolox.exp import Exp as MyExp
 class Exp(MyExp):
     def __init__(self):
         super(Exp, self).__init__()
-        self.num_classes = 2
+        self.num_classes = 3
         self.depth = 1.33
         self.width = 1.25
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
-        self.train_ann = "train_mix.json"
-        self.val_ann = "test_mix.json"
+        self.train_ann = "trainfp0803.json"
+        self.val_ann = "test.json"
 
         self.data_num_workers = 1
         self.input_size = (512, 512)
@@ -29,7 +29,7 @@ class Exp(MyExp):
         self.max_epoch = 300
         self.eval_interval = 1
         self.print_interval = 50
-        self.degrees =15.0 #0.7_15 484_336
+        self.degrees =20.0 #0.7_15 484_336
 
         self.test_size = (512, 512)
         self.test_conf = 0.01
@@ -37,7 +37,7 @@ class Exp(MyExp):
 
         self.use_l1 = True
 
-        self.mosaicp = 0.7 #0.7_20 496_341#0.6_20 480_335#0.75_20 482_337
+        self.mosaicp = 0.8 #0.7_20 496_341#0.6_20 480_335#0.75_20 482_337
 
         self.data_dir = "/data2/qilei_chen/DATA/erosive_ulcer_mix3"
 
