@@ -324,14 +324,17 @@ class Trainer:
         if self.best_ap50<ap50:
             self.save_ckpt("best_ap50")
             self.best_ap50 = ap50
+            logger.info("Update best_ap50: {}".format(self.best_ap50))
 
         if self.best_ap50_95<ap50_95:
             self.save_ckpt("best_ap50_95")
             self.best_ap50_95 = ap50_95
+            logger.info("Update best_ap50_95: {}".format(self.best_ap50_95))
 
         if self.best_ar50_95<ar50_95:
             self.save_ckpt("best_ar50_95")
             self.best_ar50_95 = ar50_95
+            logger.info("Update best_ar50_95: {}".format(self.best_ar50_95))
         
         
         self.save_ckpt("last_epoch")
