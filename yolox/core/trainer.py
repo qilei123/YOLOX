@@ -53,6 +53,10 @@ class Trainer:
         self.input_size = exp.input_size
         self.best_ap = 0
 
+        self.best_ap50 = 0
+        self.best_ap50_95 = 0
+        self.best_ar50_95 = 0
+
         # metric record
         self.meter = MeterBuffer(window_size=exp.print_interval)
         self.file_name = os.path.join(exp.output_dir, args.experiment_name)
@@ -306,20 +310,32 @@ class Trainer:
             if is_parallel(evalmodel):
                 evalmodel = evalmodel.module
 
-        ap50_95, ap50, summary = self.exp.eval(
+        ap50_95, ap50, ar50_95, summary = self.exp.eval(
             evalmodel, self.evaluator, self.is_distributed
         )
         self.model.train()
         if self.rank == 0:
             self.tblogger.add_scalar("val/COCOAP50", ap50, self.epoch + 1)
             self.tblogger.add_scalar("val/COCOAP50_95", ap50_95, self.epoch + 1)
+            self.tblogger.add_scalar("val/COCOAR50_95", ar50_95, self.epoch + 1)
             logger.info("\n" + summary)
         synchronize()
-        bap = ap50
-        if self.exp.bap == "ap50_95":
-            bap = ap50_95
-        self.save_ckpt("last_epoch", bap > self.best_ap)
-        self.best_ap = max(self.best_ap, bap)
+        
+        if self.best_ap50<ap50:
+            self.save_ckpt("best_ap50")
+            self.best_ap50 = ap50
+
+        if self.best_ap50_95<ap50_95:
+            self.save_ckpt("best_ap50_95")
+            self.best_ap50_95 = ap50_95
+
+        if self.best_ar50_95<ar50_95:
+            self.save_ckpt("best_ar50_95")
+            self.best_ar50_95 = ar50_95
+        
+        
+        self.save_ckpt("last_epoch")
+        self.best_ap = max(self.best_ap, ap50_95)
 
     def save_ckpt(self, ckpt_name, update_best_ckpt=False):
         if self.rank == 0:

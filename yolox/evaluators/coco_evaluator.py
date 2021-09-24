@@ -166,7 +166,7 @@ class COCOEvaluator:
 
     def evaluate_prediction(self, data_dict, statistics):
         if not is_main_process():
-            return 0, 0, None
+            return 0, 0, 0, None
 
         logger.info("Evaluate in main process...")
 
@@ -216,6 +216,6 @@ class COCOEvaluator:
             with contextlib.redirect_stdout(redirect_string):
                 cocoEval.summarize()
             info += redirect_string.getvalue()
-            return cocoEval.stats[0], cocoEval.stats[1], info
+            return cocoEval.stats[0], cocoEval.stats[1], cocoEval.stats[8], info
         else:
-            return 0, 0, info
+            return 0, 0, 0, info
