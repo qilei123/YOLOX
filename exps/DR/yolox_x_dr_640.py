@@ -21,8 +21,8 @@ class Exp(MyExp):
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
         self.data_dir = "/home/qilei/DATASETS/BostonAI4DB7"
-        self.train_ann = "annotations/instances_train2014.json"
-        self.val_ann = "annotations/instances_val2014.json"
+        self.train_ann = "instances_train2014.json"
+        self.val_ann = "instances_val2014.json"
 
         self.max_epoch = 300
         self.eval_interval = 1
