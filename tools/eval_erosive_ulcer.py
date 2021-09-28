@@ -183,7 +183,7 @@ def process_videos(video_dir_list,exp_file_dir,ckpt_file_dir,thresh = 0.2):
 
             outputs, img_info = predictor.inference(frame)
 
-            result_image = predictor.visual(outputs, img_info, predictor.confthre)
+            result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
 
             cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",result_image)
             success, frame = cap.read()            
