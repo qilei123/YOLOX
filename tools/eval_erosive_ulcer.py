@@ -29,7 +29,7 @@ def anns2gtboxes(gtanns,categories=[1,2]):
             gtboxes.append(xyxy)
     return gtboxes
 
-def get_eval_outputs(output,ratio):
+def get_eval_outputs(output,ratio,void_classes=[2]):
     eval_outputs = []
     
     if output is None:
@@ -44,6 +44,8 @@ def get_eval_outputs(output,ratio):
     classes = output[:,6]
     
     for bbox,cls in zip(bboxes,classes):
+        if cls in void_classes:
+            continue
         bbox = bbox.tolist()
         #print(bbox)
         bbox.append(cls+1)
@@ -182,19 +184,28 @@ def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thres
         
         dst_video_dir_ = os.path.join(dst_video_dir,os.path.basename(video_dir))
         dst_writer = cv2.VideoWriter(dst_video_dir_, cv2.VideoWriter_fourcc("P", "I", "M", "1"), fps, (roi[2]-roi[0],roi[3]-roi[1]))
-        
+        dst_video_record_dir = dst_video_dir_+".txt"
+        video_record = open(dst_video_record_dir,'w')
         while success:
 
             frame,_ = crop_img(frame, roi)
 
             outputs, img_info = predictor.inference(frame)
 
-            result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
-            
-            #print(frame_index)
-            #print(outputs[0])
+            result_image = predictor.visual(None, img_info, predictor.confthre)
 
-            #cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",result_image)
+            eval_outputs = get_eval_outputs(outputs[0],img_info["ratio"])
+            
+            for pre_box in eval_outputs:
+                cv2.putText(result_image, Erosive_Ulcer[int(pre_box[4])-1], (int(pre_box[0]), int(
+                    pre_box[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 1, cv2.LINE_AA)
+                cv2.rectangle(result_image, (int(pre_box[0]), int(pre_box[1])), (int(pre_box[2]),
+                                                        int(pre_box[3])), (0,0,255), 1)   
+
+            cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",result_image)
+            positive = len(eval_outputs)>0
+            record =str(frame_index)+" "+ str(positive)+"\n"
+            video_record.write(record)
             dst_writer.write(result_image)
 
             success, frame = cap.read()  
@@ -206,7 +217,7 @@ def evaluation_videos():
     video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos/"
     video_list = glob.glob(os.path.join(video_dir,"*.avi"))
 
-    dst_video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos_result/"
+    dst_video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos_result/without_other/"
     
     exp_file_dir = "exps/erosive_ulcer_mix3/yolox_x_erosive_ulcer_mix3_512.py"
     ckpt_file_dir = "YOLOX_outputs/yolox_x_erosive_ulcer_mix3_512/best_ap50_95_ckpt.pth"
