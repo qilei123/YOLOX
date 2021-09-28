@@ -178,6 +178,7 @@ def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thres
         fps = cap.get(cv2.CAP_PROP_FPS)
 
         success, frame = cap.read()
+        frame_index = 1
         
         dst_video_dir = os.path.join(dst_video_dir,os.path.basename(video_dir))
         #dst_writer = cv2.VideoWriter(dst_video_dir, cv2.VideoWriter_fourcc("P", "I", "M", "1"), fps, (roi[2]-roi[0],roi[3]-roi[1]))
@@ -189,13 +190,15 @@ def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thres
             outputs, img_info = predictor.inference(frame)
 
             result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
-
+            
+            print(frame_index)
             print(outputs[0])
 
             #cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",result_image)
             #dst_writer.write(result_image)
 
-            success, frame = cap.read()            
+            success, frame = cap.read()  
+            frame_index+=1          
 
 
 def evaluation_videos():
