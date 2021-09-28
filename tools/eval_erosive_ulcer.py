@@ -65,7 +65,7 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",
     predictor = Predictor(model, exp, device="gpu")
 
     #eval_m = MetricMulticlass(visualize=True,visualization_root="/data1/qilei_chen/DATA/erosive_ulcer_mix/work_dirs/retinanet_free_anchor_r50_fpn_1x_coco_512/epoch_13.pth_test.pkl_result_0.5/")
-    eval_m = MetricMulticlass()
+    eval_m = MetricMulticlass(classes=('erosive', 'ulcer','other'))
 
     coco_instance = COCO(os.path.join(dataset_dir,"annotations","test.json"))
     coco_imgs = coco_instance.imgs
