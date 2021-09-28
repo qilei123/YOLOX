@@ -15,32 +15,27 @@ from yolox.exp import Exp as MyExp
 class Exp(MyExp):
     def __init__(self):
         super(Exp, self).__init__()
-        self.num_classes = 3
+        self.num_classes = 4
         self.depth = 1.33
         self.width = 1.25
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
-        self.train_ann = "trainfp0803.json"
-        self.val_ann = "test.json"
-
-        self.data_num_workers = 1
-        self.input_size = (512, 512)
+        self.data_dir = "/home/qilei/DATASETS/BostonAI4DB7"
+        self.train_ann = "instances_train2014.json"
+        self.val_ann = "instances_val2014.json"
 
         self.max_epoch = 300
         self.eval_interval = 1
-        self.print_interval = 50
-        self.degrees =20.0 #0.7_15 484_336
+        self.print_interval = 200
+        self.degrees =20.0
 
-        self.test_size = (512, 512)
+        self.input_size = (1080, 1080)
         self.test_conf = 0.01
         self.nmsthre = 0.1
 
         self.use_l1 = True
 
-        self.mosaicp = 0.8 #0.7_20 496_341#0.6_20 480_335#0.75_20 482_337
-
-        #self.data_dir = "/data2/qilei_chen/DATA/erosive_ulcer_mix3"
-        self.data_dir = "/home/qilei/DATASETS/erosive_ulcer_mix"
+        self.mosaicp = 0.8
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
@@ -74,7 +69,7 @@ class Exp(MyExp):
             data_dir=self.data_dir,
             json_file=self.train_ann,
             img_size=self.input_size,
-            name="images",
+            name="train2014",
             preproc=TrainTransform(
                 rgb_means=(0.485, 0.456, 0.406),
                 std=(0.229, 0.224, 0.225),
@@ -99,6 +94,7 @@ class Exp(MyExp):
             perspective=self.perspective,
             enable_mixup=self.enable_mixup,
         )
+
 
         self.dataset = dataset
 
@@ -127,9 +123,9 @@ class Exp(MyExp):
         from yolox.data import ErosiveUlcer, ValTransform
 
         valdataset = ErosiveUlcer(
-            data_dir=self.data_dir ,
+            data_dir=self.data_dir,
             json_file=self.val_ann,
-            name="images",
+            name="val2014",
             img_size=self.test_size,
             preproc=ValTransform(
                 rgb_means=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)
