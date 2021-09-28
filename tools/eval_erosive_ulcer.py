@@ -187,10 +187,11 @@ def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thres
             frame,_ = crop_img(frame, roi)
 
             outputs, img_info = predictor.inference(frame)
-            print(outputs[0])
+            #print(outputs[0])
             result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
 
-            cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",result_image)
+            #cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",result_image)
+            dst_writer.write(result_image)
             success, frame = cap.read()            
 
 
