@@ -156,7 +156,7 @@ def evaluation():
         eval_erosive_ulcer("/home/qilei/DATASETS/erosive_ulcer_mix/","yolox_x_erosive_ulcer_mix3_512",param_file="best_ap50_95_ckpt.pth",score=score)
 
 
-def process_videos(video_dir_list,exp_file_dir,ckpt_file_dir,thresh = 0.2):
+def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thresh = 0.2):
 
     exp = get_exp(exp_file_dir, None)
     exp.test_conf = thresh
@@ -175,14 +175,19 @@ def process_videos(video_dir_list,exp_file_dir,ckpt_file_dir,thresh = 0.2):
     for video_dir in video_dir_list:
         
         cap = cv2.VideoCapture(video_dir)
+        fps = cap.get(cv2.CAP_PROP_FPS)
+
         success, frame = cap.read()
+        
+        dst_video_dir = os.path.join(dst_video_dir,os.path.basename(video_dir))
+        dst_writer = cv2.VideoWriter(dst_video_dir, cv2.VideoWriter_fourcc("P", "I", "M", "1"), fps, (roi[3]-roi[1],roi[2]-roi[0]))
         
         while success:
 
             frame,_ = crop_img(frame, roi)
 
             outputs, img_info = predictor.inference(frame)
-
+            print(outputs[0])
             result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
 
             cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",result_image)
@@ -193,11 +198,13 @@ def evaluation_videos():
 
     video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos/"
     video_list = glob.glob(os.path.join(video_dir,"*.avi"))
+
+    dst_video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos_result/"
     
     exp_file_dir = "exps/erosive_ulcer_mix3/yolox_x_erosive_ulcer_mix3_512.py"
     ckpt_file_dir = "YOLOX_outputs/yolox_x_erosive_ulcer_mix3_512/best_ap50_95_ckpt.pth"
 
-    process_videos(video_list,exp_file_dir,ckpt_file_dir,0.23)
+    process_videos(video_list,dst_video_dir,exp_file_dir,ckpt_file_dir,0.23)
 
 
 if __name__ == "__main__":
