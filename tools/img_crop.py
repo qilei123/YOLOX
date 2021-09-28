@@ -44,7 +44,7 @@ def crop_img(img,roi=None):
         arr = np.asarray(img)
         #print(roi)
         #print(arr[roi[1]:roi[3],roi[0]:roi[2],:])
-        return arr[roi[1]:roi[3],roi[0]:roi[2],:]
+        return arr[roi[1]:roi[3],roi[0]:roi[2],:],None
     #return Image.fromarray(cropped_arr)
 
 

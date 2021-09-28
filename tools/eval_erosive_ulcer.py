@@ -170,6 +170,8 @@ def process_videos(video_dir_list,exp_file_dir,ckpt_file_dir,thresh = 0.2):
 
     predictor = Predictor(model, exp, device="gpu")
 
+    roi = [224, 47, 690, 535]
+
     for video_dir in video_dir_list:
         
         cap = cv2.VideoCapture(video_dir)
@@ -177,14 +179,13 @@ def process_videos(video_dir_list,exp_file_dir,ckpt_file_dir,thresh = 0.2):
         
         while success:
 
-            frame,roi = crop_img(frame)
+            frame,_ = crop_img(frame, roi)
 
             outputs, img_info = predictor.inference(frame)
-            
-            print(outputs)
-            print(img_info)
-            print(roi)
-            cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",frame)
+
+            result_image = predictor.visual(outputs, img_info, predictor.confthre)
+
+            cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",result_image)
             success, frame = cap.read()            
 
 
