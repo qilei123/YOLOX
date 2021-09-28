@@ -50,7 +50,7 @@ def get_eval_outputs(output,ratio):
 
 def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",param_file = "best_ckpt.pth",score = 0.01,vis = False):
     print(confg_name)
-    exp_file = "exps/erosive_ulcer_mix/"+confg_name+".py"
+    exp_file = "exps/erosive_ulcer_mix3/"+confg_name+".py"
     exp = get_exp(exp_file, None)
     exp.test_conf = score
     exp.nmsthre = 0.1
