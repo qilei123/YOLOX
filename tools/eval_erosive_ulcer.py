@@ -180,7 +180,7 @@ def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thres
         success, frame = cap.read()
         
         dst_video_dir = os.path.join(dst_video_dir,os.path.basename(video_dir))
-        dst_writer = cv2.VideoWriter(dst_video_dir, cv2.VideoWriter_fourcc("P", "I", "M", "1"), fps, (roi[3]-roi[1],roi[2]-roi[0]))
+        dst_writer = cv2.VideoWriter(dst_video_dir, cv2.VideoWriter_fourcc("P", "I", "M", "1"), fps, (roi[2]-roi[0],roi[3]-roi[1]))
         
         while success:
 
@@ -192,6 +192,7 @@ def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thres
 
             #cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",result_image)
             dst_writer.write(result_image)
+
             success, frame = cap.read()            
 
 
