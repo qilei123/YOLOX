@@ -180,8 +180,8 @@ def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thres
         success, frame = cap.read()
         frame_index = 1
         
-        dst_video_dir = os.path.join(dst_video_dir,os.path.basename(video_dir))
-        dst_writer = cv2.VideoWriter(dst_video_dir, cv2.VideoWriter_fourcc("P", "I", "M", "1"), fps, (roi[2]-roi[0],roi[3]-roi[1]))
+        dst_video_dir_ = os.path.join(dst_video_dir,os.path.basename(video_dir))
+        dst_writer = cv2.VideoWriter(dst_video_dir_, cv2.VideoWriter_fourcc("P", "I", "M", "1"), fps, (roi[2]-roi[0],roi[3]-roi[1]))
         
         while success:
 
