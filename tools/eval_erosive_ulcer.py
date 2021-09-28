@@ -199,7 +199,7 @@ def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thres
 
             success, frame = cap.read()  
             frame_index+=1          
-        break
+        
 
 def evaluation_videos():
 
