@@ -20,7 +20,7 @@ class Exp(MyExp):
         self.width = 1.25
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
-        self.data_dir = "/home/qilei/DATASETS/BostonAI4DB7"
+        self.data_dir = "/data1/qilei_chen/DATA/DB/BostonAI4DB7"
         self.train_ann = "instances_train2014.json"
         self.val_ann = "instances_val2014.json"
 

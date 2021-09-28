@@ -20,13 +20,13 @@ class Exp(MyExp):
         self.width = 1.25
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
-        self.data_dir = "/home/qilei/DATASETS/BostonAI4DB7"
+        self.data_dir = "/data1/qilei_chen/DATA/DB/BostonAI4DB7"
         self.train_ann = "instances_train2014.json"
         self.val_ann = "instances_val2014.json"
 
         self.max_epoch = 300
         self.eval_interval = 1
-        self.print_interval = 200
+        self.print_interval = 50
         self.degrees =20.0
 
         self.input_size = (640, 640)
