@@ -6,6 +6,7 @@ from metric_polyp_multiclass import MetricMulticlass
 import cv2
 import os
 import torch
+import glob
 
 from yolox.data.data_augment import preproc
 from yolox.data.datasets import COCO_CLASSES,Erosive_Ulcer,Erosive_Ulcer3
@@ -145,6 +146,13 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",
                                                         (evaluation['confusion_matrix'][1][1] +
                                                             evaluation['confusion_matrix'][2][2]) / total_proposal))
 
+def evaluation():
+    score_list = [i*0.01 for i in range(10,30)]
+    for score in score_list:
+        print("----------"+str(score)+"-----------")
+        #eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_640_20_085_no_use_l1",param_file="best_ckpt496_350.pth",score=score)
+        eval_erosive_ulcer("/home/qilei/DATASETS/erosive_ulcer_mix/","yolox_x_erosive_ulcer_mix3_512",param_file="best_ap50_95_ckpt.pth",score=score)
+
 
 def process_videos(video_dir_list,exp_file_dir,ckpt_file_dir,thresh = 0.2):
 
@@ -168,14 +176,19 @@ def process_videos(video_dir_list,exp_file_dir,ckpt_file_dir,thresh = 0.2):
             outputs, img_info = predictor.inference(frame)
             print(outputs)
             print(img_info)
-            success, frame = cap.read()
+
+            success, frame = cap.read()            
+
+
+def evaluation_videos():
+    video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos/"
+    video_list = glob.glob(os.path.join(video_dir,"*.avi"))
+    
+    exp_file_dir = ""
+
 
 if __name__ == "__main__":
     #eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_412",0.15)
-    
-    score_list = [i*0.01 for i in range(10,30)]
-    for score in score_list:
-        print("----------"+str(score)+"-----------")
-        #eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_640_20_085_no_use_l1",param_file="best_ckpt496_350.pth",score=score)
-        eval_erosive_ulcer("/home/qilei/DATASETS/erosive_ulcer_mix/","yolox_x_erosive_ulcer_mix3_512",param_file="best_ap50_95_ckpt.pth",score=score)
+    evaluation()
+
     

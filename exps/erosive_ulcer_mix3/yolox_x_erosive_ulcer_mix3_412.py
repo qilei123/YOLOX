@@ -39,7 +39,8 @@ class Exp(MyExp):
 
         self.mosaicp = 0.8 #0.7_20 496_341#0.6_20 480_335#0.75_20 482_337
 
-        self.data_dir = "/data2/qilei_chen/DATA/erosive_ulcer_mix3"
+        #self.data_dir = "/data2/qilei_chen/DATA/erosive_ulcer_mix3"
+        self.data_dir = "/home/qilei/DATASETS/erosive_ulcer_mix"
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
