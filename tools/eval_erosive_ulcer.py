@@ -173,7 +173,7 @@ def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thres
     roi = [224, 47, 690, 535]
 
     for video_dir in video_dir_list:
-        
+        print(video_dir)
         cap = cv2.VideoCapture(video_dir)
         fps = cap.get(cv2.CAP_PROP_FPS)
 
