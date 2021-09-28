@@ -202,7 +202,7 @@ def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thres
                 cv2.rectangle(result_image, (int(pre_box[0]), int(pre_box[1])), (int(pre_box[2]),
                                                         int(pre_box[3])), (0,0,255), 1)   
 
-            cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",result_image)
+            #cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",result_image)
             positive = len(eval_outputs)>0
             record =str(frame_index)+" "+ str(positive)+"\n"
             video_record.write(record)
