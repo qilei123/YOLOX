@@ -190,7 +190,7 @@ def evaluation_videos():
     exp_file_dir = "exps/erosive_ulcer_mix3/yolox_x_erosive_ulcer_mix3_512.py"
     ckpt_file_dir = "YOLOX_outputs/yolox_x_erosive_ulcer_mix3_512/best_ap50_95_ckpt.pth"
 
-    process_videos(video_list,exp_file_dir,ckpt_file_dir)
+    process_videos(video_list,exp_file_dir,ckpt_file_dir,0.23)
 
 
 if __name__ == "__main__":
