@@ -13,6 +13,8 @@ from yolox.data.datasets import COCO_CLASSES,Erosive_Ulcer,Erosive_Ulcer3
 from yolox.exp import get_exp
 from yolox.utils import fuse_model, get_model_info, postprocess, vis
 
+from img_crop import *
+
 colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
 
 def xywh2xyxy(box):
@@ -174,11 +176,15 @@ def process_videos(video_dir_list,exp_file_dir,ckpt_file_dir,thresh = 0.2):
         success, frame = cap.read()
         
         while success:
+
+            frame,roi = crop_img(frame)
+
             outputs, img_info = predictor.inference(frame)
             
             print(outputs)
             print(img_info)
-
+            print(roi)
+            cv2.imwrite("/home/qilei/DATASETS/erosive_ulcer_mix/test.jpg",frame)
             success, frame = cap.read()            
 
 
