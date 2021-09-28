@@ -168,12 +168,14 @@ def process_videos(video_dir_list,exp_file_dir,ckpt_file_dir,thresh = 0.2):
 
     predictor = Predictor(model, exp, device="gpu")
 
-
     for video_dir in video_dir_list:
+        
         cap = cv2.VideoCapture(video_dir)
         success, frame = cap.read()
+        
         while success:
             outputs, img_info = predictor.inference(frame)
+            
             print(outputs)
             print(img_info)
 
@@ -181,14 +183,19 @@ def process_videos(video_dir_list,exp_file_dir,ckpt_file_dir,thresh = 0.2):
 
 
 def evaluation_videos():
+
     video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos/"
     video_list = glob.glob(os.path.join(video_dir,"*.avi"))
     
-    exp_file_dir = ""
+    exp_file_dir = "exps/erosive_ulcer_mix3/yolox_x_erosive_ulcer_mix3_512.py"
+    ckpt_file_dir = "YOLOX_outputs/yolox_x_erosive_ulcer_mix3_512/best_ap50_95_ckpt.pth"
+
+    process_videos(video_list,exp_file_dir,ckpt_file_dir)
 
 
 if __name__ == "__main__":
     #eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_412",0.15)
-    evaluation()
+    #evaluation()
+    evaluation_videos()
 
     
