@@ -146,6 +146,30 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",
                                                             evaluation['confusion_matrix'][2][2]) / total_proposal))
 
 
+def process_videos(video_dir_list,exp_file_dir,ckpt_file_dir,thresh = 0.2):
+
+    exp = get_exp(exp_file_dir, None)
+    exp.test_conf = thresh
+    exp.nmsthre = 0.1
+    model = exp.get_model()
+    model.cuda()
+    model.eval()
+
+    ckpt = torch.load(ckpt_file_dir, map_location="cpu")
+    model.load_state_dict(ckpt["model"])
+
+    predictor = Predictor(model, exp, device="gpu")
+
+
+    for video_dir in video_dir_list:
+        cap = cv2.VideoCapture(video_dir)
+        success, frame = cap.read()
+        while success:
+            outputs, img_info = predictor.inference(frame)
+            print(outputs)
+            print(img_info)
+            success, frame = cap.read()
+
 if __name__ == "__main__":
     #eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_412",0.15)
     
