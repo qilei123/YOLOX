@@ -217,12 +217,17 @@ def evaluation_videos():
     video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos/"
     video_list = glob.glob(os.path.join(video_dir,"*.avi"))
 
-    dst_video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos_result/without_other/"
+    threshold = 0.2
+
+    dst_video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos_result/without_other"+str(threshold)
+
+    if not os.path.exists(dst_video_dir):
+        os.makedirs(dst_video_dir)
     
     exp_file_dir = "exps/erosive_ulcer_mix3/yolox_x_erosive_ulcer_mix3_512.py"
     ckpt_file_dir = "YOLOX_outputs/yolox_x_erosive_ulcer_mix3_512/best_ap50_95_ckpt.pth"
 
-    process_videos(video_list,dst_video_dir,exp_file_dir,ckpt_file_dir,0.23)
+    process_videos(video_list,dst_video_dir,exp_file_dir,ckpt_file_dir,threshold)
 
 
 if __name__ == "__main__":
