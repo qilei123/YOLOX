@@ -67,7 +67,7 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",
     #eval_m = MetricMulticlass(visualize=True,visualization_root="/data1/qilei_chen/DATA/erosive_ulcer_mix/work_dirs/retinanet_free_anchor_r50_fpn_1x_coco_512/epoch_13.pth_test.pkl_result_0.5/")
     eval_m = MetricMulticlass()
 
-    coco_instance = COCO(os.path.join(dataset_dir,"annotations","test_mix.json"))
+    coco_instance = COCO(os.path.join(dataset_dir,"annotations","test.json"))
     coco_imgs = coco_instance.imgs
 
     for img_id in coco_imgs:
@@ -149,8 +149,9 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",
 if __name__ == "__main__":
     #eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_412",0.15)
     
-    score_list = [i*0.01 for i in range(5,30)]
+    score_list = [i*0.01 for i in range(10,30)]
     for score in score_list:
         print("----------"+str(score)+"-----------")
-        eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_640_20_085_no_use_l1",param_file="best_ckpt496_350.pth",score=score)
+        #eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_640_20_085_no_use_l1",param_file="best_ckpt496_350.pth",score=score)
+        eval_erosive_ulcer("/home/qilei/DATASETS/erosive_ulcer_mix/","yolox_x_erosive_ulcer_mix3_512",param_file="best_ap50_95_ckpt.pth",score=score)
     
