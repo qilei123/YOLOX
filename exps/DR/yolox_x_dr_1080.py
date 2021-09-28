@@ -29,7 +29,7 @@ class Exp(MyExp):
         self.print_interval = 200
         self.degrees =20.0
 
-        self.input_size = (1080, 1080)
+        self.input_size = (1280, 1280)
         self.test_size = self.input_size
         self.test_conf = 0.01
         self.nmsthre = 0.1
