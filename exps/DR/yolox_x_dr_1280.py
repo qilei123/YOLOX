@@ -30,6 +30,7 @@ class Exp(MyExp):
         self.degrees =20.0
 
         self.input_size = (1280, 1280)
+        self.random_size = (35, 45)
         self.test_size = self.input_size
         self.test_conf = 0.01
         self.nmsthre = 0.1
