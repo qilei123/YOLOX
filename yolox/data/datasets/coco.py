@@ -99,6 +99,7 @@ class COCODataset(Dataset):
         res, img_info, file_name = self.annotations[index]
         # load image and preprocess
         print(file_name)
+        file_name = file_name.replace("/data2/qilei_chen/DATA/new_polyp_data_combination/images","")
         if os.path.exists(file_name):
             img_file = file_name
         else:
