@@ -100,7 +100,7 @@ class COCODataset(Dataset):
         # load image and preprocess
         print(file_name)
         print(self.data_dir)
-        
+        print(os.path.exists(file_name))
         if os.path.exists(file_name):
             img_file = file_name
         else:
