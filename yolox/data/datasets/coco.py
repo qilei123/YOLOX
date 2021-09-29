@@ -106,6 +106,7 @@ class COCODataset(Dataset):
             img_file = file_name
         else:
             file_name = file_name.replace("/data2/qilei_chen/DATA/new_polyp_data_combination/images","")
+            print(os.path.join(self.data_dir, self.name, file_name))
             img_file = os.path.join(self.data_dir, self.name, file_name)
             print(img_file)
         print(img_file)
