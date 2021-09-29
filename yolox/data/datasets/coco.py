@@ -100,10 +100,11 @@ class COCODataset(Dataset):
         # load image and preprocess
         print(file_name)
         print(self.data_dir)
-        file_name = file_name.replace("/data2/qilei_chen/DATA/new_polyp_data_combination","/home/qilei/DATASETS/new_polyp_data_combination")
+        
         if os.path.exists(file_name):
             img_file = file_name
         else:
+            file_name = file_name.replace("/data2/qilei_chen/DATA/new_polyp_data_combination/images","")
             img_file = os.path.join(
                 self.data_dir, self.name, file_name
             )
