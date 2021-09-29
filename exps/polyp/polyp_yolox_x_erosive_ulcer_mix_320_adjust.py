@@ -40,7 +40,8 @@ class Exp(MyExp):
 
         self.mosaicp = 0.8 
 
-        self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
+        #self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
+        self.data_dir = "/home/qilei/DATASETS/new_polyp_data_combination"
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
