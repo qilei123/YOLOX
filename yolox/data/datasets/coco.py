@@ -98,6 +98,7 @@ class COCODataset(Dataset):
 
         res, img_info, file_name = self.annotations[index]
         # load image and preprocess
+        print(file_name)
         if os.path.exists(file_name):
             img_file = file_name
         else:
