@@ -24,23 +24,24 @@ class Exp(MyExp):
         self.val_ann = "test_annotation_coco.json"
 
         self.data_num_workers = 1
-        self.input_size = (412, 412)
-        self.random_size = (10, 20)
+        self.input_size = (320, 320)
+        self.random_size = (5, 25)
 
-        self.max_epoch = 300
+        self.max_epoch = 100
         self.eval_interval = 1
         self.print_interval = 50
-        self.degrees =20.0 #0.7_15 484_336
+        self.degrees =30.0 
 
         self.test_size = self.input_size 
         self.test_conf = 0.01
         self.nmsthre = 0.1
 
-        self.use_l1 = True
+        self.use_l1 = False
 
-        self.mosaicp = 0.8 #0.7_20 496_341#0.6_20 480_335#0.75_20 482_337
+        self.mosaicp = 0.8 
 
-        self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
+        #self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
+        self.data_dir = "/home/qilei/DATASETS/new_polyp_data_combination"
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
