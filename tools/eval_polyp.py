@@ -55,7 +55,7 @@ def get_eval_outputs(output,ratio,void_classes=[2]):
 
 def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",param_file = "best_ckpt.pth",score = 0.01,vis = False):
     print(confg_name)
-    exp_file = "exps/erosive_ulcer_mix3/"+confg_name+".py"
+    exp_file = "exps/polyp/"+confg_name+".py"
     exp = get_exp(exp_file, None)
     exp.test_conf = score
     exp.nmsthre = 0.1
@@ -70,9 +70,9 @@ def eval_erosive_ulcer(dataset_dir,confg_name = "yolox_x_erosive_ulcer_mix_512",
     predictor = Predictor(model, exp, device="gpu")
 
     #eval_m = MetricMulticlass(visualize=True,visualization_root="/data1/qilei_chen/DATA/erosive_ulcer_mix/work_dirs/retinanet_free_anchor_r50_fpn_1x_coco_512/epoch_13.pth_test.pkl_result_0.5/")
-    eval_m = MetricMulticlass(classes=('erosive', 'ulcer','other'))
+    eval_m = MetricMulticlass(classes=('polyp', ))
 
-    coco_instance = COCO(os.path.join(dataset_dir,"annotations","test.json"))
+    coco_instance = COCO(os.path.join(dataset_dir,"test_annotation_coco.json"))
     coco_imgs = coco_instance.imgs
 
     for img_id in coco_imgs:
@@ -155,7 +155,7 @@ def evaluation():
     for score in score_list:
         print("----------"+str(score)+"-----------")
         #eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_640_20_085_no_use_l1",param_file="best_ckpt496_350.pth",score=score)
-        eval_erosive_ulcer("/home/qilei/DATASETS/erosive_ulcer_mix/","yolox_x_erosive_ulcer_mix3_512",param_file="best_ap50_95_ckpt.pth",score=score)
+        eval_erosive_ulcer("/data2/qilei_chen/DATA/new_polyp_data_combination/","polyp_yolox_x_erosive_ulcer_mix_320",param_file="best_ap50_95_ckpt.pth",score=score)
 
 
 def process_videos(video_dir_list,dst_video_dir,exp_file_dir,ckpt_file_dir,thresh = 0.2):
