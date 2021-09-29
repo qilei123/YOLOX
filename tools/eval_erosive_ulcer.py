@@ -217,7 +217,7 @@ def evaluation_videos():
     video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos/"
     video_list = glob.glob(os.path.join(video_dir,"*.avi"))
 
-    threshold = 0.2
+    threshold = 0.15
 
     dst_video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos_result/without_other"+str(threshold)
 
@@ -232,7 +232,7 @@ def evaluation_videos():
 
 if __name__ == "__main__":
     #eval_erosive_ulcer("datasets/gastric_object_detection/","yolox_x_erosive_ulcer_mix_412",0.15)
-    evaluation()
-    #evaluation_videos()
+    #evaluation()
+    evaluation_videos()
 
     
