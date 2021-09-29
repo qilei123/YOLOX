@@ -108,6 +108,7 @@ class COCODataset(Dataset):
             img_file = os.path.join(
                 self.data_dir, self.name, file_name
             )
+            print(img_file)
         print(img_file)
         img = cv2.imread(img_file)
         assert img is not None
