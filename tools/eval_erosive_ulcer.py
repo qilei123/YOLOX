@@ -217,7 +217,7 @@ def evaluation_videos():
     video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos/"
     video_list = glob.glob(os.path.join(video_dir,"*.avi"))
 
-    threshold = 0.15
+    threshold = 0.1
 
     dst_video_dir = "/home/qilei/DATASETS/erosive_ulcer_mix/videos_result/without_other"+str(threshold)
 
