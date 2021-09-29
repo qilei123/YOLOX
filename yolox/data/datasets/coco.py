@@ -98,18 +98,13 @@ class COCODataset(Dataset):
 
         res, img_info, file_name = self.annotations[index]
         # load image and preprocess
-        print(file_name)
-        print(self.data_dir)
-        print(self.name)
-        print(os.path.exists(file_name))
+
         if os.path.exists(file_name):
             img_file = file_name
         else:
             file_name = file_name.replace("/data2/qilei_chen/DATA/new_polyp_data_combination/images/","")
-            print(os.path.join(self.data_dir, self.name, file_name))
             img_file = os.path.join(self.data_dir, self.name, file_name)
-            print(img_file)
-        print(img_file)
+
         img = cv2.imread(img_file)
         assert img is not None
 
