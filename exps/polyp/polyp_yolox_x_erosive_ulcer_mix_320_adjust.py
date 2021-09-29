@@ -29,7 +29,7 @@ class Exp(MyExp):
 
         self.max_epoch = 300
         self.eval_interval = 1
-        self.print_interval = 200
+        self.print_interval = 50
         self.degrees =30.0 
 
         self.test_size = self.input_size 
