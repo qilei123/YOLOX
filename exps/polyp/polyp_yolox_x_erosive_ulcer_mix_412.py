@@ -25,7 +25,7 @@ class Exp(MyExp):
 
         self.data_num_workers = 1
         self.input_size = (412, 412)
-        self.random_size = (10, 30)
+        #self.random_size = (10, 30)
 
         self.max_epoch = 100
         self.eval_interval = 1
