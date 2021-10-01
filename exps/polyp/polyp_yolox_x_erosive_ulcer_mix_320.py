@@ -33,9 +33,7 @@ class Exp(MyExp):
 
         self.test_size = self.input_size 
         self.test_conf = 0.01
-        self.nmsthre = 0.4
-
-        self.basic_lr_per_img = 1.0/128
+        self.nmsthre = 0.1
 
         self.use_l1 = True
 
