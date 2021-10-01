@@ -26,7 +26,7 @@ class Exp(MyExp):
         self.data_num_workers = 1
         self.input_size = (320, 320)
 
-        self.max_epoch = 300
+        self.max_epoch = 100
         self.eval_interval = 1
         self.print_interval = 400
         self.degrees =20.0 
@@ -34,6 +34,8 @@ class Exp(MyExp):
         self.test_size = self.input_size 
         self.test_conf = 0.01
         self.nmsthre = 0.4
+
+        self.basic_lr_per_img = 1.0/128
 
         self.use_l1 = True
 
