@@ -8,7 +8,7 @@ import time
 from loguru import logger
 
 import cv2
-
+import datetime
 import torch
 
 from yolox.data.data_augment import preproc
@@ -217,9 +217,16 @@ def imageflow_demo(predictor, vis_folder, current_time, args):
     while True:
         ret_val, frame = cap.read()
         if ret_val:
+            time0=datetime.datetime.now()
             outputs, img_info = predictor.inference(frame)
+            time1=datetime.datetime.now()
+            print("inference")
+            print((time1-time0).microseconds/1000)             
             result_frame = predictor.visual(outputs[0], img_info, predictor.confthre)
-            cv2.imwrite("/data1/qilei_chen/DEVELOPMENTS/YOLOX/YOLOX_outputs/yolox_x_trans_drone_mix_960/vis_res/test.jpg",result_frame)
+            time1=datetime.datetime.now()
+            print("inference_vis")
+            print((time1-time0).microseconds/1000)   
+            #cv2.imwrite("/data1/qilei_chen/DEVELOPMENTS/YOLOX/YOLOX_outputs/yolox_x_trans_drone_mix_960/vis_res/test.jpg",result_frame)
             if args.save_result:
                 vid_writer.write(result_frame)
             #ch = cv2.waitKey(1)
