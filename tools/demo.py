@@ -219,9 +219,9 @@ def imageflow_demo(predictor, vis_folder, current_time, args):
             result_frame = predictor.visual(outputs[0], img_info, predictor.confthre)
             if args.save_result:
                 vid_writer.write(result_frame)
-            ch = cv2.waitKey(1)
-            if ch == 27 or ch == ord("q") or ch == ord("Q"):
-                break
+            #ch = cv2.waitKey(1)
+            #if ch == 27 or ch == ord("q") or ch == ord("Q"):
+            #    break
         else:
             break
 
