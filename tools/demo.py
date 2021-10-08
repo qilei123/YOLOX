@@ -12,7 +12,7 @@ import cv2
 import torch
 
 from yolox.data.data_augment import preproc
-from yolox.data.datasets import COCO_CLASSES,Erosive_Ulcer,Erosive_Ulcer3
+from yolox.data.datasets import COCO_CLASSES,Erosive_Ulcer,Erosive_Ulcer3,Trans_drone3
 from yolox.exp import get_exp
 from yolox.utils import fuse_model, get_model_info, postprocess, vis
 
@@ -284,7 +284,7 @@ def main(exp, args):
         trt_file = None
         decoder = None
 
-    predictor = Predictor(model, exp, Erosive_Ulcer, trt_file, decoder, args.device)
+    predictor = Predictor(model, exp, Trans_drone3, trt_file, decoder, args.device)
     current_time = time.localtime()
     if args.demo == "image":
         image_demo(predictor, vis_folder, args.path, current_time, args.save_result)
