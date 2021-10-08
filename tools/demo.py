@@ -182,9 +182,10 @@ def image_demo(predictor, vis_folder, path, current_time, save_result):
         outputs, img_info = predictor.inference(image_name)
         result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
         if save_result:
-            save_folder = os.path.join(
-                vis_folder, time.strftime("%Y_%m_%d_%H_%M_%S", current_time)
-            )
+            #save_folder = os.path.join(
+            #    vis_folder, time.strftime("%Y_%m_%d_%H_%M_%S", current_time)
+            #)
+            save_folder = vis_folder
             os.makedirs(save_folder, exist_ok=True)
             save_file_name = os.path.join(save_folder, os.path.basename(image_name))
             logger.info("Saving detection result in {}".format(save_file_name))
