@@ -182,10 +182,10 @@ def image_demo(predictor, vis_folder, path, current_time, save_result):
         outputs, img_info = predictor.inference(image_name)
         result_image = predictor.visual(outputs[0], img_info, predictor.confthre)
         if save_result:
-            #save_folder = os.path.join(
-            #    vis_folder, time.strftime("%Y_%m_%d_%H_%M_%S", current_time)
-            #)
-            save_folder = vis_folder
+            save_folder = os.path.join(
+                vis_folder, time.strftime("%Y_%m_%d_%H_%M_%S", current_time)
+            )
+
             os.makedirs(save_folder, exist_ok=True)
             save_file_name = os.path.join(save_folder, os.path.basename(image_name))
             logger.info("Saving detection result in {}".format(save_file_name))
@@ -201,9 +201,10 @@ def imageflow_demo(predictor, vis_folder, current_time, args):
     width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)  # float
     height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)  # float
     fps = cap.get(cv2.CAP_PROP_FPS)
-    save_folder = os.path.join(
-        vis_folder, time.strftime("%Y_%m_%d_%H_%M_%S", current_time)
-    )
+    #save_folder = os.path.join(
+    #    vis_folder, time.strftime("%Y_%m_%d_%H_%M_%S", current_time)
+    #)
+    save_folder = vis_folder
     os.makedirs(save_folder, exist_ok=True)
     if args.demo == "video":
         save_path = os.path.join(save_folder, args.path.split("/")[-1])
@@ -218,6 +219,7 @@ def imageflow_demo(predictor, vis_folder, current_time, args):
         if ret_val:
             outputs, img_info = predictor.inference(frame)
             result_frame = predictor.visual(outputs[0], img_info, predictor.confthre)
+            cv2.imwrite("/data1/qilei_chen/DEVELOPMENTS/YOLOX/YOLOX_outputs/yolox_x_trans_drone_mix_960/vis_res/test.jpg",result_frame)
             if args.save_result:
                 vid_writer.write(result_frame)
             #ch = cv2.waitKey(1)
