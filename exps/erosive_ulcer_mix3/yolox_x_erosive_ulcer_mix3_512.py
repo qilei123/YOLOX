@@ -20,7 +20,7 @@ class Exp(MyExp):
         self.width = 1.25
         self.exp_name = os.path.split(os.path.realpath(__file__))[1].split(".")[0]
 
-        self.train_ann = "trainfp0803.json"
+        self.train_ann = "train.json"
         self.val_ann = "test.json"
 
         self.data_num_workers = 1
@@ -41,7 +41,8 @@ class Exp(MyExp):
         self.mosaicp = 0.8 #0.7_20 496_341#0.6_20 480_335#0.75_20 482_337
 
         #self.data_dir = "/data2/qilei_chen/DATA/erosive_ulcer_mix3"
-        self.data_dir = "/home/qilei/DATASETS/erosive_ulcer_mix"
+        #self.data_dir = "/home/qilei/DATASETS/erosive_ulcer_mix"
+        self.data_dir = "/data3/qilei_chen/DATA/erosive_ulcer3"
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
