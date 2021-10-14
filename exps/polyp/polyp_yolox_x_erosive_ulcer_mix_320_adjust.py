@@ -25,7 +25,7 @@ class Exp(MyExp):
 
         self.data_num_workers = 1
         self.input_size = (320, 320)
-        self.random_size = (5, 30)
+        self.random_size = (10, 10)
 
         self.max_epoch = 100
         self.eval_interval = 1
@@ -40,8 +40,8 @@ class Exp(MyExp):
 
         self.mosaicp = 0.8 
 
-        self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
-        #self.data_dir = "/home/qilei/DATASETS/new_polyp_data_combination"
+        #self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
+        self.data_dir = "/home/qilei/.TEMP/new_polyp_data_combination"
 
     def get_model(self):
         from yolox.models import YOLOX, YOLOPAFPN, YOLOXHead
