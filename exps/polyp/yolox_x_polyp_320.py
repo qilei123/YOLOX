@@ -49,7 +49,7 @@ class Exp(MyExp):
 
         self.use_l1 = True
 
-        self.mosaicp = 0.8 
+        self.mosaicp = 0.5 
 
         #self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
         self.data_dir = "/home/qilei/.TEMP/new_polyp_data_combination"
