@@ -51,8 +51,8 @@ class Exp(MyExp):
 
         self.mosaicp = 0.0 
 
-        #self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
-        self.data_dir = "/home/qilei/.TEMP/new_polyp_data_combination"
+        self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
+        #self.data_dir = "/home/qilei/.TEMP/new_polyp_data_combination"
         self.output_dir = self.data_dir
 
     def get_model(self):

@@ -75,7 +75,7 @@ def random_perspective(
     s = random.uniform(scale[0], scale[1])
     # s = 2 ** random.uniform(-scale, scale)
     R[:2] = cv2.getRotationMatrix2D(angle=a, center=(0, 0), scale=s)
-    R = cv2.getRotationMatrix2D(angle=a, center=(height/2, width/2), scale=s)
+    R[:2] = cv2.getRotationMatrix2D(angle=a, center=(height/2, width/2), scale=s)
     # Shear
     S = np.eye(3)
     S[0, 1] = math.tan(random.uniform(-shear, shear) * math.pi / 180)  # x shear (deg)
@@ -104,13 +104,13 @@ def random_perspective(
             img = cv2.warpPerspective(
                 img, M, dsize=(width, height), borderValue=(114, 114, 114)
             )
-            cv2.imwrite("/home/qilei/.TEMP/new_polyp_data_combination/yolox_x_polyp_320/test.jpg",img)
+            cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/test.jpg",img)
             #exit(0)
         else:  # affine
             img = cv2.warpAffine(
                 img, M[:2], dsize=(width, height), borderValue=(114, 114, 114)
             )
-            cv2.imwrite("/home/qilei/.TEMP/new_polyp_data_combination/yolox_x_polyp_320/test.jpg",img)
+            cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/test.jpg",img)
             #exit(0)
     # Transform label coordinates
     n = len(targets)
