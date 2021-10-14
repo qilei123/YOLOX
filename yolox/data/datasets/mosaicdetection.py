@@ -267,6 +267,7 @@ class MosaicDetectionP(Dataset):
     @Dataset.resize_getitem
     def __getitem__(self, idx):
         if self.enable_mosaic and random.random()<self.possibility:
+            print("use mosaic")
             mosaic_labels = []
             input_dim = self._dataset.input_dim
             input_h, input_w = input_dim[0], input_dim[1]
@@ -336,6 +337,7 @@ class MosaicDetectionP(Dataset):
             return mix_img, padded_labels, img_info, np.array([idx])
 
         else:
+            print("not use mosaic")
             self._dataset._input_dim = self.input_dim
             img, label, img_info, id_ = self._dataset.pull_item(idx)
             img, label = self.preproc(img, label, self.input_dim)
