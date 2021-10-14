@@ -104,6 +104,7 @@ def random_perspective(
             img = cv2.warpPerspective(
                 img, M, dsize=(width, height), borderValue=(114, 114, 114)
             )
+            cv2.imwrite("/home/qilei/.TEMP/new_polyp_data_combination/yolox_x_polyp_320/test.jpg",img)
         else:  # affine
             img = cv2.warpAffine(
                 img, M[:2], dsize=(width, height), borderValue=(114, 114, 114)
