@@ -337,7 +337,8 @@ class MosaicDetectionP(Dataset):
         else:
             self._dataset._input_dim = self.input_dim
             img, label, img_info, id_ = self._dataset.pull_item(idx)
-            #img, label = self.preproc(img, label, self.input_dim)
+            img, label = self.preproc(img, label, self.input_dim)
+            '''
             input_h, input_w = img.shape[:2]
             img, label = random_perspective(
                 img,
@@ -350,6 +351,7 @@ class MosaicDetectionP(Dataset):
                 border=[-input_h // 2, -input_w // 2],
             )  # border to remove
             img, label = self.preproc(img, label, self.input_dim)
+            '''
             return img, label, img_info, id_
 
     def mixup(self, origin_img, origin_labels, input_dim):
