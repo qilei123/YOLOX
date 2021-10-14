@@ -74,8 +74,8 @@ def random_perspective(
     # a += random.choice([-180, -90, 0, 90])  # add 90deg rotations to small rotations
     s = random.uniform(scale[0], scale[1])
     # s = 2 ** random.uniform(-scale, scale)
-    R[:2] = cv2.getRotationMatrix2D(angle=a, center=(0, 0), scale=s)
-
+    #R[:2] = cv2.getRotationMatrix2D(angle=a, center=(0, 0), scale=s)
+    R[:2] = cv2.getRotationMatrix2D(angle=a, center=(height/2, width/2), scale=s)
     # Shear
     S = np.eye(3)
     S[0, 1] = math.tan(random.uniform(-shear, shear) * math.pi / 180)  # x shear (deg)
