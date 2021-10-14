@@ -339,7 +339,7 @@ class MosaicDetectionP(Dataset):
             img, label, img_info, id_ = self._dataset.pull_item(idx)
             img, label = self.preproc(img, label, self.input_dim)
             input_h, input_w = self.input_dim[0], self.input_dim[1]
-            mosaic_img, mosaic_labels = random_perspective(
+            img, label = random_perspective(
                 img,
                 label,
                 degrees=self.degrees,
