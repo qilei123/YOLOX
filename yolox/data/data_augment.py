@@ -110,7 +110,8 @@ def random_perspective(
             img = cv2.warpAffine(
                 img, M[:2], dsize=(width, height), borderValue=(114, 114, 114)
             )
-
+            cv2.imwrite("/home/qilei/.TEMP/new_polyp_data_combination/yolox_x_polyp_320/test.jpg",img)
+            exit(0)
     # Transform label coordinates
     n = len(targets)
     if n:
