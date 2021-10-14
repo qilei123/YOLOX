@@ -97,6 +97,7 @@ def random_perspective(
     print(R)
     print(C)
     print(M)
+    print(perspective)
     ###########################
     # For Aug out of Mosaic
     # s = 1.
