@@ -342,11 +342,12 @@ class MosaicDetectionP(Dataset):
             img_, label_ = random_perspective(
                 img,
                 label,
-                translate=0.0,
-                scale=[0.95,1.05],
-                shear=0,
-                perspective=0,
-                
+                degrees=self.degrees,
+                translate=self.translate,
+                scale=self.scale,
+                shear=self.shear,
+                perspective=self.perspective,
+                border=[-input_h // 2, -input_w // 2]
             )  # border to remove
             cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/test.jpg",img_)
             exit()
