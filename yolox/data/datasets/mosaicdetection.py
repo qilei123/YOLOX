@@ -341,7 +341,6 @@ class MosaicDetectionP(Dataset):
             img_, label_ = random_perspective_(
                 img,
                 label,
-                degrees=self.degrees,
                 translate=0.0,
                 scale=self.scale,
                 shear=0,
