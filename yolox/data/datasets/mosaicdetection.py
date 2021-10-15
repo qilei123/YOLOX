@@ -9,7 +9,7 @@ import numpy as np
 
 from yolox.utils import adjust_box_anns
 
-from ..data_augment import box_candidates, random_perspective
+from ..data_augment import box_candidates, random_perspective, random_perspective_
 from .datasets_wrapper import Dataset
 
 
@@ -337,6 +337,18 @@ class MosaicDetectionP(Dataset):
         else:
             self._dataset._input_dim = self.input_dim
             img, label, img_info, id_ = self._dataset.pull_item(idx)
+            input_h, input_w = img.shape[:2]
+            img_, label_ = random_perspective_(
+                img,
+                label,
+                degrees=self.degrees,
+                translate=self.translate,
+                scale=self.scale,
+                shear=self.shear,
+                perspective=self.perspective,
+                border=[-input_h // 2, -input_w // 2],
+            )  # border to remove
+            cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/test.jpg",img_)
             img, label = self.preproc(img, label, self.input_dim)
             '''
             input_h, input_w = img.shape[:2]
