@@ -306,7 +306,7 @@ def random_perspective_(
     height = img.shape[0] + border[0] * 2  # shape(h,w,c)
     width = img.shape[1] + border[1] * 2
 
-    cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/testgt.jpg", draw_rect(img,targets[0][:4],(255,0,0)))
+    cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/testgt.jpg", draw_rect(img,targets[:,:4],(255,0,0)))
 
     # Center
     C = np.eye(3)
