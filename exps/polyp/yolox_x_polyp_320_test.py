@@ -41,7 +41,7 @@ class Exp(MyExp):
         self.print_interval = 50
 
 
-        self.degrees =180.0 
+        self.degrees =90.0 
         self.scale = (0.95, 1.05)
         self.translate = 0.1
         self.shear = 1.0
@@ -56,8 +56,8 @@ class Exp(MyExp):
 
         self.mosaicp = 0.5
 
-        self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
-        #self.data_dir = "/home/qilei/.TEMP/new_polyp_data_combination"
+        #self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
+        self.data_dir = "/home/qilei/.TEMP/new_polyp_data_combination"
         self.output_dir = self.data_dir
 
     def get_model(self):
