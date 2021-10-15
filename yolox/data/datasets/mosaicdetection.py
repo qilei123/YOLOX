@@ -160,9 +160,9 @@ class MosaicDetection(Dataset):
         img, cp_labels, _, _ = self._dataset.pull_item(cp_index)
 
         if len(img.shape) == 3:
-            cp_img = np.ones((input_dim[0], input_dim[1], 3)) * 114.0
+            cp_img = np.ones((input_dim[0], input_dim[1], 3)) * 1.0
         else:
-            cp_img = np.ones(input_dim) * 114.0
+            cp_img = np.ones(input_dim) * 1.0
         cp_scale_ratio = min(input_dim[0] / img.shape[0], input_dim[1] / img.shape[1])
         resized_img = cv2.resize(
             img,
@@ -288,7 +288,7 @@ class MosaicDetectionP(Dataset):
                 # generate output mosaic image
                 (h, w, c) = img.shape[:3]
                 if i_mosaic == 0:
-                    mosaic_img = np.full((input_h * 2, input_w * 2, c), 114, dtype=np.uint8)
+                    mosaic_img = np.full((input_h * 2, input_w * 2, c), 1, dtype=np.uint8)
 
                 # suffix l means large image, while s means small image in mosaic aug.
                 (l_x1, l_y1, l_x2, l_y2), (s_x1, s_y1, s_x2, s_y2) = get_mosaic_coordinate(
@@ -376,9 +376,9 @@ class MosaicDetectionP(Dataset):
         img, cp_labels, _, _ = self._dataset.pull_item(cp_index)
 
         if len(img.shape) == 3:
-            cp_img = np.ones((input_dim[0], input_dim[1], 3)) * 114.0
+            cp_img = np.ones((input_dim[0], input_dim[1], 3)) * 1.0
         else:
-            cp_img = np.ones(input_dim) * 114.0
+            cp_img = np.ones(input_dim) * 1.0
         cp_scale_ratio = min(input_dim[0] / img.shape[0], input_dim[1] / img.shape[1])
         resized_img = cv2.resize(
             img,
