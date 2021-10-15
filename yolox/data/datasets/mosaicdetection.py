@@ -339,7 +339,7 @@ class MosaicDetectionP(Dataset):
             img, label, img_info, id_ = self._dataset.pull_item(idx)
             input_h, input_w = img.shape[:2]
             cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/testpi.jpg",img)
-            img_, label_ = random_perspective_(
+            img_, label_ = random_perspective(
                 img,
                 label,
                 translate=0.0,
