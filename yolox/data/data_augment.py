@@ -346,7 +346,7 @@ def random_perspective_(
     # s = 1.
     # M = np.eye(3)
     ###########################
-    
+    print(perspective)
     if (border[0] != 0) or (border[1] != 0) or (M != np.eye(3)).any():  # image changed
         if perspective:
             img = cv2.warpPerspective(
