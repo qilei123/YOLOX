@@ -16,7 +16,7 @@ import cv2
 import numpy as np
 
 from yolox.utils import xyxy2cxcywh
-from bbox_util import *
+from .bbox_util import *
 
 def augment_hsv(img, hgain=0.015, sgain=0.7, vgain=0.4):
     r = np.random.uniform(-1, 1, 3) * [hgain, sgain, vgain] + 1  # random gains
