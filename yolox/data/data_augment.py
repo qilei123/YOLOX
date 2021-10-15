@@ -320,6 +320,9 @@ def random_perspective_(
     #R[:2] = cv2.getRotationMatrix2D(angle=a, center=(0, 0), scale=s)
     image_center = tuple(np.array(img.shape[1::-1]) / 2)
     R[:2] = cv2.getRotationMatrix2D(angle=a, center=image_center, scale=s)
+
+    cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/testrt.jpg", cv2.warpAffine(img, R[:2], img.shape[1::-1], flags=cv2.INTER_LINEAR,borderValue=(114, 114, 114)))
+
     # Shear
     S = np.eye(3)
     S[0, 1] = math.tan(random.uniform(-shear, shear) * math.pi / 180)  # x shear (deg)
