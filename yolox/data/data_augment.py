@@ -341,7 +341,7 @@ def random_perspective_(
     )  # y translation (pixels)
 
     # Combined rotation matrix
-    M = T @ S @ R @ C  # order of operations (right to left) is IMPORTANT
+    M =  S @ R @ C  # order of operations (right to left) is IMPORTANT
 
     ###########################
     # For Aug out of Mosaic
