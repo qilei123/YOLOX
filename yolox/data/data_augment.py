@@ -92,6 +92,9 @@ def random_perspective(
 
     # Combined rotation matrix
     M = T @ S @ R @ C  # order of operations (right to left) is IMPORTANT
+    print("---------")
+    print(R)
+    print(M)
     #M = R
     ###########################
     # For Aug out of Mosaic
