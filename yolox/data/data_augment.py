@@ -92,9 +92,7 @@ def random_perspective(
 
     # Combined rotation matrix
     M = T @ S @ R @ C  # order of operations (right to left) is IMPORTANT
-    print("---------")
-    print(R)
-    print(M)
+
     #M = R
     ###########################
     # For Aug out of Mosaic
@@ -303,6 +301,7 @@ def random_perspective_(
     perspective=0.0,
     border=(0, 0),
 ):
+    perspective=1.0
     # targets = [cls, xyxy]
     height = img.shape[0] + border[0] * 2  # shape(h,w,c)
     width = img.shape[1] + border[1] * 2
@@ -342,7 +341,7 @@ def random_perspective_(
     # s = 1.
     # M = np.eye(3)
     ###########################
-
+    
     if (border[0] != 0) or (border[1] != 0) or (M != np.eye(3)).any():  # image changed
         if perspective:
             img = cv2.warpPerspective(
@@ -350,7 +349,7 @@ def random_perspective_(
             )
         else:  # affine
             img = cv2.warpAffine(
-                img, M[:2], dsize=(width, height), borderValue=(114, 114, 114)
+                img, R[:2], dsize=(width, height), borderValue=(114, 114, 114)
             )
 
     # Transform label coordinates
@@ -361,7 +360,7 @@ def random_perspective_(
         xy[:, :2] = targets[:, [0, 1, 2, 3, 0, 3, 2, 1]].reshape(
             n * 4, 2
         )  # x1y1, x2y2, x1y2, x2y1
-        xy = xy @ M.T  # transform
+        xy = xy @ R  # transform
         if perspective:
             xy = (xy[:, :2] / xy[:, 2:3]).reshape(n, 8)  # rescale
         else:  # affine
