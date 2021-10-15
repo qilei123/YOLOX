@@ -41,7 +41,7 @@ class Exp(MyExp):
         self.print_interval = 50
         self.degrees =180.0 
         self.scale = (0.95, 1.05)
-        self.perspective = 1.0
+        #self.perspective = 1.0
 
         self.test_size = self.input_size 
         self.test_conf = 0.01
