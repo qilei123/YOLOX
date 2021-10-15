@@ -25,7 +25,7 @@ class Exp(MyExp):
 
         self.data_num_workers = 1
         self.input_size = (640, 640)
-        self.random_size = (20, 20)
+        self.random_size = (18, 25)
 
         # --------------  training config --------------------- #
         self.warmup_epochs = 10
