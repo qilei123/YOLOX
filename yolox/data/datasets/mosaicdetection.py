@@ -11,7 +11,7 @@ from yolox.utils import adjust_box_anns
 
 from ..data_augment import box_candidates, random_perspective, random_perspective_
 from .datasets_wrapper import Dataset
-
+from ..bbox_util import *
 
 def get_mosaic_coordinate(mosaic_image, mosaic_index, xc, yc, w, h, input_h, input_w):
     # TODO update doc
@@ -339,6 +339,7 @@ class MosaicDetectionP(Dataset):
             img, label, img_info, id_ = self._dataset.pull_item(idx)
             input_h, input_w = img.shape[:2]
             cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/testpi.jpg",img)
+            print(label)
             img_, label_ = random_perspective(
                 img,
                 label,
@@ -349,6 +350,7 @@ class MosaicDetectionP(Dataset):
                 perspective=self.perspective,
                 #border=[-input_h // 2, -input_w // 2]
             )  # border to remove
+            print(label_)
             cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/test.jpg",img_)
             exit()
             img, label = self.preproc(img, label, self.input_dim)
