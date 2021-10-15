@@ -103,13 +103,13 @@ def random_perspective(
     if (border[0] != 0) or (border[1] != 0) or (M != np.eye(3)).any():  # image changed
         if perspective:
             img = cv2.warpPerspective(
-                img, M, dsize=(width, height), borderValue=(114, 114, 114)
+                img, M, dsize=(width, height), #borderValue=(114, 114, 114)
             )
             #cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/test.jpg",img)
             #exit(0)
         else:  # affine
             img = cv2.warpAffine(
-                img, M[:2], dsize=(width, height), borderValue=(114, 114, 114)
+                img, M[:2], dsize=(width, height), #borderValue=(114, 114, 114)
             )
             #cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/test.jpg",img)
             #exit(0)
