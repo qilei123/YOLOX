@@ -324,7 +324,9 @@ class MosaicDetectionP(Dataset):
                 perspective=self.perspective,
                 #border=[-input_h // 2, -input_w // 2],
             )  # border to remove
-            cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/mosaic_img1.jpg",draw_rect(mosaic_img,mosaic_labels[:,:4],(255,0,0)))
+            #cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/mosaic_img1.jpg",draw_rect(mosaic_img,mosaic_labels[:,:4],(255,0,0)))
+            #only show the main image, sometimes will the groundtruth is not right
+            '''
             mosaic_img, mosaic_labels = random_perspective(
                 mosaic_img,
                 mosaic_labels,
@@ -335,8 +337,9 @@ class MosaicDetectionP(Dataset):
                 perspective=self.perspective,
                 border=[-input_h // 2, -input_w // 2],
             )  # border to remove
-            cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/mosaic_img2.jpg",draw_rect(mosaic_img,mosaic_labels[:,:4],(255,0,0)))
-            exit()
+            '''
+            #cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/mosaic_img2.jpg",draw_rect(mosaic_img,mosaic_labels[:,:4],(255,0,0)))
+
             # -----------------------------------------------------------------
             # CopyPaste: https://arxiv.org/abs/2012.07177
             # -----------------------------------------------------------------

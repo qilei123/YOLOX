@@ -39,9 +39,14 @@ class Exp(MyExp):
 
         self.eval_interval = 1
         self.print_interval = 50
+
+
         self.degrees =180.0 
         self.scale = (0.95, 1.05)
-        #self.perspective = 1.0
+        self.translate = 0.1
+        self.shear = 1.0
+        self.perspective = 0.0
+        self.enable_mixup = True
 
         self.test_size = self.input_size 
         self.test_conf = 0.01
@@ -49,7 +54,7 @@ class Exp(MyExp):
 
         self.use_l1 = True
 
-        self.mosaicp = 1.5
+        self.mosaicp = 0.5
 
         self.data_dir = "/data2/qilei_chen/DATA/new_polyp_data_combination"
         #self.data_dir = "/home/qilei/.TEMP/new_polyp_data_combination"
