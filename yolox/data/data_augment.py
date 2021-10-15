@@ -317,9 +317,9 @@ def random_perspective_(
     # a += random.choice([-180, -90, 0, 90])  # add 90deg rotations to small rotations
     s = random.uniform(scale[0], scale[1])
     # s = 2 ** random.uniform(-scale, scale)
-    R[:2] = cv2.getRotationMatrix2D(angle=a, center=(0, 0), scale=s)
-    #image_center = tuple(np.array(img.shape[1::-1]) / 2)
-    #R[:2] = cv2.getRotationMatrix2D(angle=a, center=image_center, scale=s)
+    #R[:2] = cv2.getRotationMatrix2D(angle=a, center=(0, 0), scale=s)
+    image_center = tuple(np.array(img.shape[1::-1]) / 2)
+    R[:2] = cv2.getRotationMatrix2D(angle=a, center=image_center, scale=s)
 
     rtimg = cv2.warpAffine(img, R[:2], img.shape[1::-1],borderValue=(114, 114, 114))
     cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/testrt.jpg", rtimg)
