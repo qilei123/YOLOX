@@ -324,7 +324,7 @@ class MosaicDetectionP(Dataset):
                 perspective=self.perspective,
                 border=[-input_h // 2, -input_w // 2],
             )  # border to remove
-
+            cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/mosaic_img.jpg",draw_rect(mosaic_img,mosaic_labels[:,:4],(255,0,0)))
             # -----------------------------------------------------------------
             # CopyPaste: https://arxiv.org/abs/2012.07177
             # -----------------------------------------------------------------
@@ -338,8 +338,7 @@ class MosaicDetectionP(Dataset):
             self._dataset._input_dim = self.input_dim
             img, label, img_info, id_ = self._dataset.pull_item(idx)
             input_h, input_w = img.shape[:2]
-            cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/testpi.jpg",img)
-            print(label)
+
             img_, label_ = random_perspective(
                 img,
                 label,
@@ -350,24 +349,9 @@ class MosaicDetectionP(Dataset):
                 perspective=self.perspective,
                 #border=[-input_h // 2, -input_w // 2]
             )  # border to remove
-            print(label_)
-            cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/test.jpg",draw_rect(img_,label_[:,:4],(255,0,0)))
-            exit()
+
             img, label = self.preproc(img, label, self.input_dim)
-            '''
-            input_h, input_w = img.shape[:2]
-            img, label = random_perspective(
-                img,
-                label,
-                degrees=self.degrees,
-                translate=self.translate,
-                scale=self.scale,
-                shear=self.shear,
-                perspective=self.perspective,
-                border=[-input_h // 2, -input_w // 2],
-            )  # border to remove
-            img, label = self.preproc(img, label, self.input_dim)
-            '''
+
             return img, label, img_info, id_
 
     def mixup(self, origin_img, origin_labels, input_dim):
