@@ -16,7 +16,7 @@ import cv2
 import numpy as np
 
 from yolox.utils import xyxy2cxcywh
-
+from bbox_util import *
 
 def augment_hsv(img, hgain=0.015, sgain=0.7, vgain=0.4):
     r = np.random.uniform(-1, 1, 3) * [hgain, sgain, vgain] + 1  # random gains
@@ -305,6 +305,8 @@ def random_perspective_(
     # targets = [cls, xyxy]
     height = img.shape[0] + border[0] * 2  # shape(h,w,c)
     width = img.shape[1] + border[1] * 2
+
+    cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/testgt.jpg", draw_rect(img,targets[0][:4],(255,0,0)))
 
     # Center
     C = np.eye(3)
