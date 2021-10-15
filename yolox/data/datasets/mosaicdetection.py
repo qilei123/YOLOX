@@ -9,7 +9,7 @@ import numpy as np
 
 from yolox.utils import adjust_box_anns
 
-from ..data_augment import box_candidates, random_perspective, random_perspective_
+from ..data_augment import box_candidates, random_perspective
 from .datasets_wrapper import Dataset
 from ..bbox_util import *
 
