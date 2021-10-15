@@ -320,6 +320,7 @@ def random_perspective_(
     #R[:2] = cv2.getRotationMatrix2D(angle=a, center=(0, 0), scale=s)
     image_center = tuple(np.array(img.shape[1::-1]) / 2)
     R[:2] = cv2.getRotationMatrix2D(angle=a, center=image_center, scale=s)
+    print(R)
     rtimg = cv2.warpAffine(img, R[:2], img.shape[1::-1],borderValue=(114, 114, 114))
     cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/testrt.jpg", rtimg)
 
@@ -352,10 +353,11 @@ def random_perspective_(
                 img, M, dsize=(width, height), borderValue=(114, 114, 114)
             )
         else:  # affine
+            print(R)
             img = cv2.warpAffine(
                 img, R[:2], dsize=img.shape[1::-1], borderValue=(114, 114, 114)
             )
-    print(targets)
+    #print(targets)
     # Transform label coordinates
     n = len(targets)
     if n:
