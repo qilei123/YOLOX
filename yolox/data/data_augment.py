@@ -185,9 +185,9 @@ def _mirror(image, boxes):
 
 def preproc(image, input_size, mean, std, swap=(2, 0, 1)):
     if len(image.shape) == 3:
-        padded_img = np.ones((input_size[0], input_size[1], 3)) * 114.0
+        padded_img = np.ones((input_size[0], input_size[1], 3)) * 1.0
     else:
-        padded_img = np.ones(input_size) * 114.0
+        padded_img = np.ones(input_size) * 1.0
     img = np.array(image)
     r = min(input_size[0] / img.shape[0], input_size[1] / img.shape[1])
     resized_img = cv2.resize(
