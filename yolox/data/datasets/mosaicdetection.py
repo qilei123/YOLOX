@@ -349,6 +349,7 @@ class MosaicDetectionP(Dataset):
                 border=[-input_h // 2, -input_w // 2],
             )  # border to remove
             cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/test.jpg",img_)
+            exit()
             img, label = self.preproc(img, label, self.input_dim)
             '''
             input_h, input_w = img.shape[:2]
