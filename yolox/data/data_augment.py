@@ -352,7 +352,7 @@ def random_perspective_(
             img = cv2.warpAffine(
                 img, M[:2], dsize=(width, height), borderValue=(114, 114, 114)
             )
-
+    print(targets)
     # Transform label coordinates
     n = len(targets)
     if n:
