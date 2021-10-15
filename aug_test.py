@@ -16,4 +16,4 @@ img = cv2.imread("/data1/qilei_chen/DEVELOPMENTS/YOLOX/datasets/gastric_object_d
 
 #res_img,_ = random_perspective(img,scale=[0.1,2],shear=2)
 #cv2.imwrite("datasets/"+str(time.time())+".jpg",res_img)
-cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/test.jpg",rotate_image(img))
+cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/test.jpg",rotate_image(img,25))
