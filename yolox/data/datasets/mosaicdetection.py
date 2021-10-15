@@ -322,7 +322,7 @@ class MosaicDetectionP(Dataset):
                 scale=self.scale,
                 shear=self.shear,
                 perspective=self.perspective,
-                border=[-input_h // 2, -input_w // 2],
+                #border=[-input_h // 2, -input_w // 2],
             )  # border to remove
             cv2.imwrite("/data2/qilei_chen/DATA/new_polyp_data_combination/mosaic_img.jpg",draw_rect(mosaic_img,mosaic_labels[:,:4],(255,0,0)))
             exit()
