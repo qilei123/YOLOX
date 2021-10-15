@@ -353,7 +353,7 @@ def random_perspective_(
             )
         else:  # affine
             img = cv2.warpAffine(
-                img, R[:2], dsize=(width, height), borderValue=(114, 114, 114)
+                img, R[:2], dsize=img.shape[1::-1], borderValue=(114, 114, 114)
             )
     print(targets)
     # Transform label coordinates
@@ -364,7 +364,7 @@ def random_perspective_(
         xy[:, :2] = targets[:, [0, 1, 2, 3, 0, 3, 2, 1]].reshape(
             n * 4, 2
         )  # x1y1, x2y2, x1y2, x2y1
-        xy = xy @ M.T  # transform
+        xy = xy @ R.T  # transform
         if perspective:
             xy = (xy[:, :2] / xy[:, 2:3]).reshape(n, 8)  # rescale
         else:  # affine
