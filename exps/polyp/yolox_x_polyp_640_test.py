@@ -28,7 +28,7 @@ class Exp(MyExp):
         self.random_size = (20, 25)
 
         # --------------  training config --------------------- #
-        self.warmup_epochs = 10
+        self.warmup_epochs = 100
         self.max_epoch = 150
         self.warmup_lr = 0
         self.basic_lr_per_img = 0.01 / 64.0
