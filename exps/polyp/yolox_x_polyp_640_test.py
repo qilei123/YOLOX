@@ -25,7 +25,7 @@ class Exp(MyExp):
 
         self.data_num_workers = 1
         self.input_size = (640, 640)
-        self.random_size = (18, 25)
+        self.random_size = (20, 25)
 
         # --------------  training config --------------------- #
         self.warmup_epochs = 10
@@ -42,7 +42,7 @@ class Exp(MyExp):
 
 
         self.degrees =90.0 
-        self.scale = (0.95, 1.05)
+        self.scale = (0.8, 1.2)
         self.translate = 0.1
         self.shear = 1.0
         self.perspective = 0.0
