@@ -226,7 +226,7 @@ def imageflow_demo(predictor, vis_folder, current_time, args):
             time1=datetime.datetime.now()
             print("inference_vis")
             print((time1-time0).microseconds/1000)   
-            #cv2.imwrite("/data1/qilei_chen/DEVELOPMENTS/YOLOX/YOLOX_outputs/yolox_x_trans_drone_mix_960/vis_res/test.jpg",result_frame)
+            cv2.imwrite("/home/qilei/DATASETS/trans_drone/yolox_test.jpg",result_frame)
             if args.save_result:
                 vid_writer.write(result_frame)
             #ch = cv2.waitKey(1)
