@@ -2,6 +2,6 @@
 python tools/demo.py video \
     -f exps/trans_drone/yolox_x_trans_drone_mix_960.py \
     -c YOLOX_outputs/yolox_x_trans_drone_mix_960/best_ap50_95_ckpt.pth \
-    --path "/data2/qilei_chen/DATA/trans_drone/videos/whole_rounds/DJI_0601 Wide View 400.MOV" \
+    --path "/home/qilei/DATASETS/trans_drone/trans_drone_videos2/DJI_0081.MOV" \
     --tsize 960 --save_result --device gpu
 
