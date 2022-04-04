@@ -89,3 +89,15 @@ Erosive_Ulcer=("erosive","ulcer")
 Erosive_Ulcer3=("erosive","ulcer","other")
 
 Trans_drone3=("Small 1-piece vehicle","Large 1-piece vehicle","Extra-large 2-piece truck")
+
+CAPSULEGI = (
+    "ulcer",
+    "erosion",
+    "mucous_membrane_hyperemia_edema",
+    "protuberant",
+    "vascular_changes",
+    "polyp",
+    "white_granular_degeneration",
+    "lymph_foilicie_hyperplasia",
+    "polypide",
+)
