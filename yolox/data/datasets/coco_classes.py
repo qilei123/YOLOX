@@ -90,7 +90,7 @@ Erosive_Ulcer3=("erosive","ulcer","other")
 
 Trans_drone3=("Small 1-piece vehicle","Large 1-piece vehicle","Extra-large 2-piece truck")
 
-CAPSULEGI = (
+CpsuleGI = (
     "ulcer",
     "erosion",
     "mucous_membrane_hyperemia_edema",
