@@ -44,7 +44,6 @@ class COCODataset(Dataset):
         self.ids = self.coco.getImgIds()
         self.class_ids = sorted(self.coco.getCatIds())
         cats = self.coco.loadCats(self.coco.getCatIds())
-        print(cats)
         self._classes = tuple([c["name"] for c in cats])
         self.annotations = self._load_coco_annotations()
         self.name = name
