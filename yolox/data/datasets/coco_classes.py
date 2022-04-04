@@ -86,3 +86,15 @@ COCO_CLASSES = (
 )
 
 Erosive_Ulcer=("erosive","ulcer")
+
+CAPSULEGI = (
+    "ulcer",
+    "erosion",
+    "mucous_membrane_hyperemia_edema",
+    "protuberant",
+    "vascular_changes",
+    "polyp",
+    "white_granular_degeneration",
+    "lymph_foilicie_hyperplasia",
+    "polypide",
+)
